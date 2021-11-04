@@ -1,12 +1,9 @@
-import { faGithubSquare, faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { HashRouter as Router, Link, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
-import HomePage from "./pages/HomePage";
-
 import galaxyReelUrl from "./assets/Galaxy Reel (Optimized).jpg";
 import logoUrl from "./assets/Logo (Optimized).png";
+import HomePage from "./pages/HomePage";
 
 const BackdropDiv = styled.div`
     position: fixed;
