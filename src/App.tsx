@@ -23,6 +23,8 @@ const BackdropDiv = styled.div`
     animation-timing-function: linear;
     filter: blur(4px);
 
+    z-index: -1000;
+
     @keyframes scrollBackground {
         from {
             background-position: bottom;
