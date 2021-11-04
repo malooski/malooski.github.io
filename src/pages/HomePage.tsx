@@ -10,6 +10,21 @@ const LinksDiv = styled.div`
         text-align: center;
         padding: 0;
         list-style: none;
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+
+        grid-gap: 1em;
+    }
+    li {
+        display: flex;
+        flex-direction: column;
+    }
+    a {
+        padding: 1em 1em;
+
+        background-color: #00a8e8;
+        color: white;
     }
 `;
 
