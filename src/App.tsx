@@ -52,8 +52,6 @@ const NavDiv = styled.div`
 
     margin-top: 1em;
     margin-bottom: 1em;
-
-    backdrop-filter: blur(5px);
 `;
 
 const AboutMeHeader = styled.div`
@@ -62,8 +60,6 @@ const AboutMeHeader = styled.div`
     flex-direction: row;
     justify-content: center;
     gap: 14pt;
-
-    backdrop-filter: blur(5px);
 `;
 
 const DonateButton = styled.a`
@@ -90,6 +86,7 @@ const DonateButton = styled.a`
 
 const LogoImage = styled.img`
     margin-top: 8em;
+    width: 50%;
     filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 1));
 `;
 
@@ -102,7 +99,7 @@ function App() {
             </DonateButton>
             <Router>
                 <AboutMeHeader>
-                    <LogoImage width="700px" src={logoUrl} alt="logo" />
+                    <LogoImage src={logoUrl} alt="logo" />
                 </AboutMeHeader>
                 <NavDiv></NavDiv>
                 <Switch>
