@@ -23,8 +23,11 @@ jobs:
               env:
                   PUBLIC_URL: https://maloo.ski/
 
-            - name: Prepare for deployment
+            - name: Prevent Jekyll
               run: touch build/.nojekyll
+
+            - name: Copy CNAME
+              run: cp CNAME build/CNAME
 
             - name: Deploy to Github Pages
               if: success()
