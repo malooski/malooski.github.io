@@ -1,9 +1,12 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import galaxyReelUrl from "./assets/Galaxy Reel (Optimized).jpg";
 import logoUrl from "./assets/Logo (Optimized).png";
-import HomePage from "./pages/HomePage";
+import LinksPage from "./pages/LinksPage";
+import AboutPage from "./pages/AboutPage";
+
+import DonateButton from "./components/DonateButton";
 
 const BackdropDiv = styled.div`
     position: fixed;
@@ -44,18 +47,6 @@ const RootDiv = styled.div`
     align-items: center;
 `;
 
-const NavDiv = styled.div`
-    width: 500px;
-    margin: 0 auto;
-    justify-self: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-
-    margin-top: 1em;
-    margin-bottom: 1em;
-`;
-
 const AboutMeHeader = styled.div`
     margin: 12px;
     display: flex;
@@ -64,49 +55,53 @@ const AboutMeHeader = styled.div`
     gap: 14pt;
 `;
 
-const DonateButton = styled.a`
+const LogoImage = styled.img`
+    margin-top: 2em;
+    min-width: 100px;
+    width: 50%;
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 1));
+`;
+
+const NavDiv = styled.div`
+    width: 500px;
+    margin: 0 auto;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin-top: 1em;
+    margin-bottom: 1em;
+`;
+
+const NavLink = styled(Link)`
+    color: white;
     background-color: #00a8e8;
     color: white;
     padding: 8px 16px;
+
     border-radius: 16px;
-    border: white 1px solid;
-    box-shadow: 0px 0px 8px white;
-
-    text-decoration: none;
-
-    :hover {
-        background-color: #0091d9;
-    }
-
-    font-weight: bold;
-    font-size: large;
-
-    position: fixed;
-    top: 16px;
-    right: 16px;
-`;
-
-const LogoImage = styled.img`
-    margin-top: 8em;
-    width: 50%;
-    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 1));
 `;
 
 function App() {
     return (
         <RootDiv>
             <BackdropDiv />
-            <DonateButton target="_blank" href="https://ko-fi.com/malooski">
-                Donate!
-            </DonateButton>
+            <DonateButton />
             <Router>
                 <AboutMeHeader>
                     <LogoImage src={logoUrl} alt="logo" />
                 </AboutMeHeader>
-                <NavDiv></NavDiv>
+                <NavDiv>
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/about">About</NavLink>
+                </NavDiv>
                 <Switch>
                     <Route exact path="/">
-                        <HomePage />
+                        <LinksPage />
+                    </Route>
+                    <Route exact path="/about">
+                        <AboutPage />
                     </Route>
                 </Switch>
             </Router>
