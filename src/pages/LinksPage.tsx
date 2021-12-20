@@ -9,7 +9,10 @@ import gumroadLogo from "../assets/gumroad logo.png";
 import throneLogo from "../assets/throne logo.png";
 import kofiLogo from "../assets/kofi logo.png";
 import instagramLogo from "../assets/instagram logo.png";
-import streamlabsLogo from "../assets/streamlabs logo.png";
+import streamelementsLogo from "../assets/streamelements logo.png";
+import youtubeLogo from "../assets/youtube logo.png";
+
+const COLUMN_WIDTH = "200px";
 
 const LinksDiv = styled.div`
     background-color: rgba(0, 0, 0, 0.75);
@@ -23,10 +26,10 @@ const LinksDiv = styled.div`
         list-style: none;
 
         display: grid;
-        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        grid-template-columns: repeat(2, minmax(${COLUMN_WIDTH}, 1fr));
 
         @media (max-width: 768px) {
-            grid-template-columns: repeat(1, minmax(200px, 1fr));
+            grid-template-columns: repeat(1, minmax(${COLUMN_WIDTH}, 1fr));
         }
 
         grid-gap: 1em;
@@ -69,7 +72,7 @@ export default function HomePage() {
                 </li>
                 <li>
                     <BrandedLink
-                        text="Discord Server"
+                        text="Discord"
                         bgColor="#36393f"
                         color="white"
                         img={discordLogo}
@@ -87,7 +90,7 @@ export default function HomePage() {
                 </li>
                 <li>
                     <BrandedLink
-                        text="Throne (Wishlist)"
+                        text="Throne"
                         bgColor="#e4e1f9"
                         color="black"
                         img={throneLogo}
@@ -114,11 +117,39 @@ export default function HomePage() {
                 </li>
                 <li>
                     <BrandedLink
-                        text="Streamlabs Tips"
-                        bgColor="#80f5d2"
-                        color="black"
-                        img={streamlabsLogo}
-                        href="https://streamlabs.com/malooski/"
+                        text="StreamElements Tips"
+                        bgColor="#1c233d"
+                        color="white"
+                        img={streamelementsLogo}
+                        href="https://streamelements.com/malooski/tip"
+                    />
+                </li>
+
+                <li>
+                    <BrandedLink
+                        text="YouTube"
+                        bgColor="#ff0000"
+                        color="white"
+                        img={youtubeLogo}
+                        href="https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg"
+                    />
+                </li>
+                <li>
+                    <BrandedLink
+                        text="Highlights"
+                        bgColor="#ff0000"
+                        color="white"
+                        img={youtubeLogo}
+                        href="https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ"
+                    />
+                </li>
+                <li>
+                    <BrandedLink
+                        text="Archive"
+                        bgColor="#ff0000"
+                        color="white"
+                        img={youtubeLogo}
+                        href="https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA"
                     />
                 </li>
             </ul>
