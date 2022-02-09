@@ -49,7 +49,7 @@ export default function HomePage() {
                         bgColor="#1da1f2"
                         color="white"
                         img={twitterLogo}
-                        href="https://twitter.com/malooskii"
+                        href="https://twitter.com/malooski_vt"
                     />
                 </li>
                 <li>
