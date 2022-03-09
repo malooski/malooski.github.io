@@ -148,3 +148,5 @@ export function useAnimationFrame(callback: (deltaMs: number) => void) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Make sure the effect runs only once
 }
+
+export function useOnLoaded(callback: () => void) {}

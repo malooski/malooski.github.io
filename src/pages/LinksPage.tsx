@@ -12,9 +12,11 @@ import instagramLogo from "../assets/instagram logo.png";
 import streamelementsLogo from "../assets/streamelements logo.png";
 import youtubeLogo from "../assets/youtube logo.png";
 
-import { BackdropDiv } from "../components/BackdropDiv";
+import ScrollingBackdrop from "../components/ScrollingBackdrop";
 import { Navbar } from "../components/Navbar";
-import DancingMaloo from "../components/DancingMaloo";
+import { lazy, Suspense, useState } from "react";
+
+const DancingMaloo = lazy(() => import("../components/DancingMaloo"));
 
 const COLUMN_WIDTH = "200px";
 
@@ -45,11 +47,27 @@ const LinksDiv = styled.div`
         flex-direction: column;
     }
 `;
+const ShowModelButton = styled.button`
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+
+    z-index: 1000;
+`;
+
 export default function LinksPage() {
+    const [showModel, setShowModel] = useState(false);
+
     return (
         <RootDiv>
-            <DancingMaloo />
-            <BackdropDiv />
+            <ShowModelButton onClick={() => setShowModel(v => !v)}>Dance For Me</ShowModelButton>
+            {showModel && (
+                <Suspense fallback={null}>
+                    <DancingMaloo />
+                </Suspense>
+            )}
+
+            <ScrollingBackdrop />
             <Navbar />
             <LinksDiv>
                 <ul>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { FBXLoader as Loader } from "three/examples/jsm/loaders/FBXLoader";
-import MalooskiModel from "../assets/Dancing Twerk.fbx";
+
 import { useAnimationFrame, useOnce, useOnceAsync } from "../util/react";
 import { wrapSizeMe } from "../util/sizeme";
 import { isMesh } from "../util/three";
@@ -69,7 +69,9 @@ export default wrapSizeMe(
 
         const malooStateRef = useOnceAsync(async () => {
             const state = stateRef.current;
-            const obj = await state.loader.loadAsync(MalooskiModel);
+
+            const modelPath = await import("../assets/Dancing Twerk.fbx");
+            const obj = await state.loader.loadAsync(modelPath.default);
 
             obj.traverse((child: any) => {
                 if (isMesh(child)) {
