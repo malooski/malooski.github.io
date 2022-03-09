@@ -1,5 +1,5 @@
 import { debounce } from "lodash";
-import {
+import React, {
     DependencyList,
     Dispatch,
     SetStateAction,
@@ -103,4 +103,46 @@ export function useDebouncedMemo<T>(
 export function useUuid() {
     const [id] = useState(() => uuidv4());
     return id;
+}
+
+export function useOnce<T>(getter: () => T): { current: T } {
+    const [state] = useState(getter);
+    const ref = useRef<T>(state);
+    return ref;
+}
+
+export function useOnceAsync<T>(getter: () => Promise<T>): React.MutableRefObject<T | undefined> {
+    const ref = useRef<T | undefined>();
+    useEffect(() => {
+        getter().then(v => {
+            ref.current = v;
+        });
+    }, []);
+    return ref;
+}
+
+export function useAnimationFrame(callback: (deltaMs: number) => void) {
+    // Use useRef for mutable variables that we want to persist
+    // without triggering a re-render on their change
+    const requestRef = useRef<number>();
+    const previousTimeRef = useRef<number>(performance.now());
+
+    function animate(time: number) {
+        const deltaTime = time - previousTimeRef.current;
+        callback(deltaTime);
+
+        previousTimeRef.current = time;
+        requestRef.current = requestAnimationFrame(animate);
+    }
+
+    useEffect(() => {
+        requestRef.current = requestAnimationFrame(animate);
+
+        return () => {
+            const requestRefCurr = requestRef.current;
+            if (requestRefCurr) {
+                cancelAnimationFrame(requestRefCurr);
+            }
+        };
+    }, []); // Make sure the effect runs only once
 }

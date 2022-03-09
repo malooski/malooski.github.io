@@ -12,3 +12,9 @@ export function mapValue<T, U>(
 export function filterIdx<T>(items: T[], idx: number) {
     return [...items.slice(0, idx), ...items.slice(idx + 1)];
 }
+
+export function asyncIiFe<T>(func: () => Promise<T>): Promise<T> {
+    return new Promise((resolve, reject) => {
+        func().then(resolve).catch(reject);
+    });
+}
