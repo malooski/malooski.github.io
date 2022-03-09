@@ -1,4 +1,3 @@
-import Link from "../components/Link";
 import styled from "styled-components";
 
 const RootDiv = styled.div`

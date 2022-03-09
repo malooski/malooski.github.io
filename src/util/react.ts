@@ -117,6 +117,7 @@ export function useOnceAsync<T>(getter: () => Promise<T>): React.MutableRefObjec
         getter().then(v => {
             ref.current = v;
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return ref;
 }
@@ -144,5 +145,6 @@ export function useAnimationFrame(callback: (deltaMs: number) => void) {
                 cancelAnimationFrame(requestRefCurr);
             }
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Make sure the effect runs only once
 }

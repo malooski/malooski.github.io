@@ -2,7 +2,6 @@ import { castArray } from "lodash";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import * as THREE from "three";
-import { Clock } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { FBXLoader as Loader } from "three/examples/jsm/loaders/FBXLoader";
 import MalooskiModel from "../assets/Dancing Twerk.fbx";
@@ -114,7 +113,7 @@ export default wrapSizeMe(
             const mountRefCurrent = mountRef.current;
             mountRefCurrent?.appendChild(state.renderer.domElement);
             return () => void mountRefCurrent?.removeChild(state.renderer.domElement);
-        }, []);
+        }, [stateRef]);
 
         useEffect(() => {
             const state = stateRef.current;
