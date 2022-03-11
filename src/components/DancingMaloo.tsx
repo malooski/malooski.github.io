@@ -66,9 +66,9 @@ export default wrapSizeMe(
             scene.add(directionalLight);
 
             const modelPath = await import("../assets/Dancing Twerk.fbx");
-            const obj = await loader.loadAsync(modelPath.default);
+            const malooModel = await loader.loadAsync(modelPath.default);
 
-            obj.traverse((child: any) => {
+            malooModel.traverse((child: any) => {
                 if (isMesh(child)) {
                     castArray(child.material).forEach(m => {
                         m.transparent = false;
@@ -77,13 +77,14 @@ export default wrapSizeMe(
                 }
             });
 
-            const mixer = new THREE.AnimationMixer(obj);
-            const action = mixer.clipAction(obj.animations[0]);
+            const mixer = new THREE.AnimationMixer(malooModel);
+            const action = mixer.clipAction(malooModel.animations[0]);
             action.play();
-            scene.add(obj);
 
-            obj.position.y = -1;
-            obj.scale.setScalar(0.01);
+            scene.add(malooModel);
+
+            malooModel.position.y = -1;
+            malooModel.scale.setScalar(0.01);
 
             console.log("Loaded!");
             setLoading(false);
@@ -96,7 +97,7 @@ export default wrapSizeMe(
                 controls,
                 directionalLight,
                 mixer,
-                obj,
+                malooModel,
             };
         }, []);
 
@@ -106,7 +107,7 @@ export default wrapSizeMe(
 
                 const deltaSec = deltaMs / 1000;
 
-                state.obj.rotation.y += 0.01;
+                state.malooModel.rotation.y += 0.01;
                 state.mixer.update(deltaSec);
                 state.controls.update();
                 state.renderer.render(state.scene, state.camera);
