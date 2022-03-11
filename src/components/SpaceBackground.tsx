@@ -1,9 +1,8 @@
 import styled from "styled-components";
-
 import largeBackdropURL from "../assets/Galaxy Reel Large.jpg";
 import smallBackdropURL from "../assets/Galaxy Reel Small.jpg";
 import LazyBackground from "./LazyBackground";
-import LazyImage, { LazyImageLOD } from "./LazyImage";
+import { LazyImageLOD } from "./LazyImage";
 
 const LODS: LazyImageLOD[] = [
     {

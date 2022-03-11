@@ -33,6 +33,7 @@ export default function LazyBackground(props: LazyBackgroundProps) {
                 setCurrSrcIdx(idx => idx + 1);
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currSrcIdx]);
 
     const src = lods[currSrcIdx].src;
