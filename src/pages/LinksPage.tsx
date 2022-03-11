@@ -11,21 +11,31 @@ import kofiLogo from "../assets/kofi logo.png";
 import instagramLogo from "../assets/instagram logo.png";
 import streamelementsLogo from "../assets/streamelements logo.png";
 import youtubeLogo from "../assets/youtube logo.png";
+import malooLogo from "../assets/Logo.png";
 
-import ScrollingBackdrop from "../components/ScrollingBackdrop";
+import ScrollingBackdrop from "../components/SpaceBackground";
 import { Navbar } from "../components/Navbar";
-import { lazy, Suspense, useState } from "react";
+import { Fragment, lazy, Suspense, useState } from "react";
 
 const DancingMaloo = lazy(() => import("../components/DancingMaloo"));
 
 const COLUMN_WIDTH = "200px";
 
-const RootDiv = styled.div``;
+const RootDiv = styled.div`
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
 const LinksDiv = styled.div`
     background-color: rgba(0, 0, 0, 0.75);
-    padding: 2em;
 
+    padding: 1em 2em;
     border-radius: 2em;
 
     ul {
@@ -47,141 +57,147 @@ const LinksDiv = styled.div`
         flex-direction: column;
     }
 `;
-const ShowModelButton = styled.button`
+
+const LogoImg = styled.img`
+    width: 40em;
+`;
+
+const TwerkButton = styled.button`
     position: fixed;
     bottom: 1em;
     right: 1em;
-
     z-index: 1000;
 `;
 
 export default function LinksPage() {
-    const [showModel, setShowModel] = useState(false);
+    const [isTwerk, setIsTwerk] = useState(false);
 
     return (
-        <RootDiv>
-            <ShowModelButton onClick={() => setShowModel(v => !v)}>Dance For Me</ShowModelButton>
-            {showModel && (
+        <Fragment>
+            <ScrollingBackdrop />
+            {isTwerk && (
                 <Suspense fallback={null}>
                     <DancingMaloo />
                 </Suspense>
             )}
+            <TwerkButton onClick={() => setIsTwerk(v => !v)}>Show me the aliens!</TwerkButton>
+            <RootDiv>
+                <LogoImg src={malooLogo} />
+                <Navbar />
+                <LinksDiv>
+                    <ul>
+                        <li>
+                            <BrandedLink
+                                text="Twitter"
+                                bgColor="#1da1f2"
+                                color="white"
+                                img={twitterLogo}
+                                href="https://twitter.com/malooski_vt"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="Twitch"
+                                bgColor="#6444a3"
+                                color="white"
+                                img={twitchLogo}
+                                href="https://twitch.tv/malooski"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="TikTok"
+                                bgColor="#fe2c55"
+                                color="white"
+                                img={tiktokLogo}
+                                href="http://tiktok.com/@malooski"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="Discord"
+                                bgColor="#36393f"
+                                color="white"
+                                img={discordLogo}
+                                href="https://discord.com/invite/ahmyDJ5Pfr"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="Gumroad"
+                                bgColor="#f4f4f0"
+                                color="black"
+                                img={gumroadLogo}
+                                href="https://malooski.gumroad.com/"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="Throne"
+                                bgColor="#e4e1f9"
+                                color="black"
+                                img={throneLogo}
+                                href="https://thrn.co/u/malooski"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="Ko-Fi"
+                                bgColor="#ffffff"
+                                color="black"
+                                img={kofiLogo}
+                                href="https://ko-fi.com/malooski"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="Instagram"
+                                bgColor="#fafafa"
+                                color="black"
+                                img={instagramLogo}
+                                href="https://www.instagram.com/malooski_vt/"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="StreamElements Tips"
+                                bgColor="#1c233d"
+                                color="white"
+                                img={streamelementsLogo}
+                                href="https://streamelements.com/malooski/tip"
+                            />
+                        </li>
 
-            <ScrollingBackdrop />
-            <Navbar />
-            <LinksDiv>
-                <ul>
-                    <li>
-                        <BrandedLink
-                            text="Twitter"
-                            bgColor="#1da1f2"
-                            color="white"
-                            img={twitterLogo}
-                            href="https://twitter.com/malooski_vt"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="Twitch"
-                            bgColor="#6444a3"
-                            color="white"
-                            img={twitchLogo}
-                            href="https://twitch.tv/malooski"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="TikTok"
-                            bgColor="#fe2c55"
-                            color="white"
-                            img={tiktokLogo}
-                            href="http://tiktok.com/@malooski"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="Discord"
-                            bgColor="#36393f"
-                            color="white"
-                            img={discordLogo}
-                            href="https://discord.com/invite/ahmyDJ5Pfr"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="Gumroad"
-                            bgColor="#f4f4f0"
-                            color="black"
-                            img={gumroadLogo}
-                            href="https://malooski.gumroad.com/"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="Throne"
-                            bgColor="#e4e1f9"
-                            color="black"
-                            img={throneLogo}
-                            href="https://thrn.co/u/malooski"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="Ko-Fi"
-                            bgColor="#ffffff"
-                            color="black"
-                            img={kofiLogo}
-                            href="https://ko-fi.com/malooski"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="Instagram"
-                            bgColor="#fafafa"
-                            color="black"
-                            img={instagramLogo}
-                            href="https://www.instagram.com/malooski_vt/"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="StreamElements Tips"
-                            bgColor="#1c233d"
-                            color="white"
-                            img={streamelementsLogo}
-                            href="https://streamelements.com/malooski/tip"
-                        />
-                    </li>
-
-                    <li>
-                        <BrandedLink
-                            text="YouTube"
-                            bgColor="#ff0000"
-                            color="white"
-                            img={youtubeLogo}
-                            href="https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="Highlights"
-                            bgColor="#ff0000"
-                            color="white"
-                            img={youtubeLogo}
-                            href="https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ"
-                        />
-                    </li>
-                    <li>
-                        <BrandedLink
-                            text="Archive"
-                            bgColor="#ff0000"
-                            color="white"
-                            img={youtubeLogo}
-                            href="https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA"
-                        />
-                    </li>
-                </ul>
-            </LinksDiv>
-        </RootDiv>
+                        <li>
+                            <BrandedLink
+                                text="YouTube"
+                                bgColor="#ff0000"
+                                color="white"
+                                img={youtubeLogo}
+                                href="https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="Highlights"
+                                bgColor="#ff0000"
+                                color="white"
+                                img={youtubeLogo}
+                                href="https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ"
+                            />
+                        </li>
+                        <li>
+                            <BrandedLink
+                                text="Archive"
+                                bgColor="#ff0000"
+                                color="white"
+                                img={youtubeLogo}
+                                href="https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA"
+                            />
+                        </li>
+                    </ul>
+                </LinksDiv>
+            </RootDiv>
+        </Fragment>
     );
 }

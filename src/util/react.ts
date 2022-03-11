@@ -26,45 +26,6 @@ export function useInterval(callback: () => void, delay: number | null) {
     }, [delay]);
 }
 
-export function useInitial(func: () => any) {
-    useEffect(() => {
-        func();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-}
-
-export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
-    const [storedValue, setStoredValue] = useState<T>(readValue);
-
-    const setValue: SetValue<T> = value => {
-        try {
-            const newValue = value instanceof Function ? value(storedValue) : value;
-            window.localStorage.setItem(key, JSON.stringify(newValue));
-            setStoredValue(newValue);
-        } catch (error) {
-            console.warn(`Error setting localStorage key “${key}”:`, error);
-        }
-    };
-
-    useInitial(() => {
-        setStoredValue(readValue());
-    });
-
-    return [storedValue, setValue];
-
-    function readValue(): T {
-        try {
-            const item = window.localStorage.getItem(key);
-            if (item == null) return initialValue;
-            return JSON.parse(item) as T;
-        } catch (error) {
-            console.warn(`Error reading localStorage key “${key}”:`, error);
-            return initialValue;
-        }
-    }
-}
-
 export type SimpleForm = { [key: string]: string | number | boolean };
 export type SetSimpleForm<T extends SimpleForm> = Dispatch<SetStateAction<Partial<T>>>;
 
@@ -105,24 +66,18 @@ export function useUuid() {
     return id;
 }
 
-export function useOnce<T>(getter: () => T): { current: T } {
-    const [state] = useState(getter);
-    const ref = useRef<T>(state);
-    return ref;
-}
-
-export function useOnceAsync<T>(getter: () => Promise<T>): React.MutableRefObject<T | undefined> {
-    const ref = useRef<T | undefined>();
+export function useOnceAsync<T>(getter: () => Promise<T>, deps: any[]): T | undefined {
+    const [state, setState] = useState<T | undefined>(undefined);
     useEffect(() => {
         getter().then(v => {
-            ref.current = v;
+            setState(v);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    return ref;
+    }, deps);
+    return state;
 }
 
-export function useAnimationFrame(callback: (deltaMs: number) => void) {
+export function useAnimationFrame(callback: (deltaMs: number) => boolean, deps: any[]) {
     // Use useRef for mutable variables that we want to persist
     // without triggering a re-render on their change
     const requestRef = useRef<number>();
@@ -130,10 +85,14 @@ export function useAnimationFrame(callback: (deltaMs: number) => void) {
 
     function animate(time: number) {
         const deltaTime = time - previousTimeRef.current;
-        callback(deltaTime);
 
-        previousTimeRef.current = time;
-        requestRef.current = requestAnimationFrame(animate);
+        if (callback(deltaTime)) {
+            previousTimeRef.current = time;
+            requestRef.current = requestAnimationFrame(animate);
+        } else {
+            // Don't request next frame if callback returned false
+            return;
+        }
     }
 
     useEffect(() => {
@@ -146,7 +105,5 @@ export function useAnimationFrame(callback: (deltaMs: number) => void) {
             }
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []); // Make sure the effect runs only once
+    }, [deps]); // Make sure the effect runs only once
 }
-
-export function useOnLoaded(callback: () => void) {}

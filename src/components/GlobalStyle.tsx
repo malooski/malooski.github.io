@@ -4,7 +4,6 @@ import { COLOR } from "./constants";
 export default createGlobalStyle`
     html, body {
         font-family: "Nunito", sans-serif;
-        /* background-color: ${COLOR.black}; */
         color: ${COLOR.white};
     }
 

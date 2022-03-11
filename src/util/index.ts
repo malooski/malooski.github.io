@@ -18,3 +18,7 @@ export function asyncIiFe<T>(func: () => Promise<T>): Promise<T> {
         func().then(resolve).catch(reject);
     });
 }
+
+export function delayMs(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

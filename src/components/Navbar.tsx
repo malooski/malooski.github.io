@@ -20,7 +20,6 @@ const MyNavLink = styled(NavLink)`
     padding: 8px 16px;
     text-decoration: none;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
     :hover {
         background-color: #0082b6;

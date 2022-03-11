@@ -1,25 +1,34 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import AboutPage from "./pages/AboutPage";
-import CommsPage from "./pages/CommPage";
-import LinksPage from "./pages/LinksPage";
-import SandboxPage from "./pages/SandboxPage";
+
+const LinksPage = lazy(() => import("./pages/LinksPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const CommsPage = lazy(() => import("./pages/CommsPage"));
+const SandboxPage = lazy(() => import("./pages/SandboxPage"));
 
 function App() {
     return (
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <LinksPage />
+                    <Suspense fallback={null}>
+                        <LinksPage />
+                    </Suspense>
                 </Route>
                 <Route exact path="/about">
-                    <AboutPage />
+                    <Suspense fallback={null}>
+                        <AboutPage />
+                    </Suspense>
                 </Route>
                 <Route exact path="/comms">
-                    <CommsPage />
+                    <Suspense fallback={null}>
+                        <CommsPage />
+                    </Suspense>
                 </Route>
                 <Route exact path="/sandbox">
-                    <SandboxPage />
+                    <Suspense fallback={null}>
+                        <SandboxPage />
+                    </Suspense>
                 </Route>
             </Switch>
         </Router>
