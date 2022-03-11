@@ -6,11 +6,10 @@ import styled from "styled-components";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { FBXLoader as Loader } from "three/examples/jsm/loaders/FBXLoader";
-
-import { useAnimationFrame, useOnceAsync } from "../util/react";
+import { useAnimationFrame, useAsyncMemo } from "../util/react";
 import { wrapSizeMe } from "../util/sizeme";
 import { isMesh } from "../util/three";
-import FixedCenterDiv from "./FixedCenter";
+import FixedCenterDiv from "./core/FixedCenter";
 
 const RootDiv = styled.div`
     position: fixed;
@@ -32,8 +31,6 @@ const RootDiv = styled.div`
     }
 `;
 
-const LoadingIcon = styled(FontAwesomeIcon)``;
-
 export default wrapSizeMe(
     {
         monitorHeight: true,
@@ -47,7 +44,7 @@ export default wrapSizeMe(
         const mountRef = useRef<HTMLDivElement | null>(null);
         const [loading, setLoading] = useState(false);
 
-        const state = useOnceAsync(async () => {
+        const state = useAsyncMemo(async () => {
             console.log("Loading...");
             setLoading(true);
             const scene = new THREE.Scene();
@@ -140,7 +137,7 @@ export default wrapSizeMe(
             <RootDiv ref={mountRef}>
                 {loading && (
                     <FixedCenterDiv>
-                        <LoadingIcon spin size="6x" icon={faSpinner} />
+                        <FontAwesomeIcon spin size="6x" icon={faSpinner} />
                     </FixedCenterDiv>
                 )}
             </RootDiv>

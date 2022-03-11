@@ -8,7 +8,6 @@ import {
     useRef,
     useState,
 } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 export type SetValue<T> = Dispatch<SetStateAction<T>>;
 
@@ -24,23 +23,6 @@ export function useInterval(callback: () => void, delay: number | null) {
         const id = setInterval(() => savedCallback.current(), delay);
         return () => clearInterval(id);
     }, [delay]);
-}
-
-export type SimpleForm = { [key: string]: string | number | boolean };
-export type SetSimpleForm<T extends SimpleForm> = Dispatch<SetStateAction<Partial<T>>>;
-
-export function useSimpleForm<T extends SimpleForm>(initialValue: T): [T, SetSimpleForm<T>] {
-    const [form, setForm] = useState(initialValue);
-
-    const setPartialForm: SetSimpleForm<T> = value => {
-        const newPartialForm = value instanceof Function ? value(form) : value;
-        setForm(f => ({
-            ...form,
-            ...newPartialForm,
-        }));
-    };
-
-    return [form, setPartialForm];
 }
 
 export function useDebouncedMemo<T>(
@@ -61,12 +43,7 @@ export function useDebouncedMemo<T>(
     return state;
 }
 
-export function useUuid() {
-    const [id] = useState(() => uuidv4());
-    return id;
-}
-
-export function useOnceAsync<T>(getter: () => Promise<T>, deps: any[]): T | undefined {
+export function useAsyncMemo<T>(getter: () => Promise<T>, deps: any[]): T | undefined {
     const [state, setState] = useState<T | undefined>(undefined);
     useEffect(() => {
         getter().then(v => {
