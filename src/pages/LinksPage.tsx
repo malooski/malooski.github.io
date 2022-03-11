@@ -59,7 +59,7 @@ const LinksDiv = styled.div`
 `;
 
 const LogoImg = styled.img`
-    width: 40em;
+    width: min(90%, 400px);
 `;
 
 const TwerkButton = styled.button`

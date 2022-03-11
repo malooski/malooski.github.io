@@ -2,13 +2,6 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const NavDiv = styled.div`
-    width: 500px;
-    margin: 0 auto;
-    justify-self: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
     margin-top: 1em;
     margin-bottom: 1em;
 `;
