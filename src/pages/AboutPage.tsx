@@ -2,22 +2,6 @@ import Link from "../components/Link";
 import styled from "styled-components";
 import MyPage from "./MyPage";
 
-const RootDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    background-color: rgba(0, 0, 0, 0.5);
-
-    padding: 1em 2em;
-    border-radius: 2em;
-
-    h1,
-    h3 {
-        margin-top: 1em;
-    }
-`;
-
 const CreditsTable = styled.table`
     border-collapse: collapse;
 

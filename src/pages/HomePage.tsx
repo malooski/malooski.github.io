@@ -1,19 +1,17 @@
-import { Fragment, lazy, Suspense, useMemo, useState } from "react";
+import { useMemo } from "react";
 import styled from "styled-components";
 import discordLogo from "../assets/discord logo.png";
 import gumroadLogo from "../assets/gumroad logo.png";
 import instagramLogo from "../assets/instagram logo.png";
 import kofiLogo from "../assets/kofi logo.png";
-
 import streamelementsLogo from "../assets/streamelements logo.png";
 import throneLogo from "../assets/throne logo.png";
 import tiktokLogo from "../assets/tiktok logo.png";
 import twitchLogo from "../assets/twitch logo.png";
 import twitterLogo from "../assets/twitter logo.png";
 import youtubeLogo from "../assets/youtube logo.png";
-import MyPage from "./MyPage";
 import BrandedLink from "../components/BrandedLink";
-import { Navbar } from "../components/Navbar";
+import MyPage from "./MyPage";
 
 const COLUMN_WIDTH = "200px";
 
@@ -155,8 +153,8 @@ const LINKS: LinkInfo[] = [
 ];
 
 export default function HomePage() {
-    const faveLinks = useMemo(() => LINKS.filter(link => link.isFave), [LINKS]);
-    const notFaves = useMemo(() => LINKS.filter(link => !link.isFave), [LINKS]);
+    const faveLinks = useMemo(() => LINKS.filter(link => link.isFave), []);
+    const notFaves = useMemo(() => LINKS.filter(link => !link.isFave), []);
 
     return (
         <MyPage>
