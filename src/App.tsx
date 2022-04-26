@@ -1,36 +1,39 @@
 import React, { lazy, Suspense } from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
-const LinksPage = lazy(() => import("./pages/LinksPage"));
+const LinksPage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const CommsPage = lazy(() => import("./pages/CommsPage"));
-const SandboxPage = lazy(() => import("./pages/SandboxPage"));
 
 function App() {
     return (
         <Router>
-            <Switch>
-                <Route exact path="/">
-                    <Suspense fallback={null}>
-                        <LinksPage />
-                    </Suspense>
-                </Route>
-                <Route exact path="/about">
-                    <Suspense fallback={null}>
-                        <AboutPage />
-                    </Suspense>
-                </Route>
-                <Route exact path="/comms">
-                    <Suspense fallback={null}>
-                        <CommsPage />
-                    </Suspense>
-                </Route>
-                <Route exact path="/sandbox">
-                    <Suspense fallback={null}>
-                        <SandboxPage />
-                    </Suspense>
-                </Route>
-            </Switch>
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <Suspense fallback={4}>
+                            <LinksPage />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="/about"
+                    element={
+                        <Suspense fallback={4}>
+                            <AboutPage />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="/comms"
+                    element={
+                        <Suspense fallback={4}>
+                            <CommsPage />
+                        </Suspense>
+                    }
+                />
+            </Routes>
         </Router>
     );
 }

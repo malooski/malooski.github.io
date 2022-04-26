@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
-import { COLOR } from "./constants";
+import { THEME } from "../constants";
 
 export default createGlobalStyle`
     html, body {
         font-family: "Nunito", sans-serif;
-        color: ${COLOR.white};
+        color: ${THEME.colors.white};
     }
 
     html, body, #root {
@@ -21,6 +21,6 @@ export default createGlobalStyle`
     }
 
     a {
-        color: ${COLOR.lightBlue}
+        color: ${THEME.colors.pink}
     }
 `;

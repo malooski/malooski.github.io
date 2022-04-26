@@ -1,5 +1,5 @@
 /**
- * Utilities for Three.js
+ * Typescript focused utilities for Three.js
  */
 
 import * as THREE from "three";

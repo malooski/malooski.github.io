@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { THEME } from "../constants";
+import { middleChildSelector } from "../util/css";
 
 const NavDiv = styled.div`
     margin-top: 1em;
@@ -8,28 +10,33 @@ const NavDiv = styled.div`
 
 const MyNavLink = styled(NavLink)`
     color: white;
-    background-color: #00a8e8;
+    background-image: linear-gradient(${THEME.colors.purple}, ${THEME.colors.pink});
     color: white;
     padding: 8px 16px;
     text-decoration: none;
     font-weight: bold;
 
-    :hover {
-        background-color: #0082b6;
-    }
+    border: 1px solid ${THEME.colors.lightPink};
 
-    :active {
-        background-color: #0082b6;
+    :hover {
+        color: ${THEME.colors.lightPink};
     }
 
     :first-child {
         border-top-left-radius: 16px;
         border-bottom-left-radius: 16px;
+        border-right: none;
+    }
+
+    ${middleChildSelector} {
+        border-left: none;
+        border-right: none;
     }
 
     :last-child {
         border-top-right-radius: 16px;
         border-bottom-right-radius: 16px;
+        border-left: none;
     }
 `;
 
@@ -38,6 +45,7 @@ export function Navbar() {
         <NavDiv>
             <MyNavLink to="/">Home</MyNavLink>
             <MyNavLink to="/about">About</MyNavLink>
+            <MyNavLink to="/comms">Commissions</MyNavLink>
         </NavDiv>
     );
 }
