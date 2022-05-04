@@ -3,7 +3,7 @@ import { THEME } from "../constants";
 
 export default createGlobalStyle`
     html, body {
-        font-family: "Nunito", sans-serif;
+        font-family: 'Exo 2', sans-serif;
         color: ${THEME.colors.white};
     }
 
@@ -14,10 +14,8 @@ export default createGlobalStyle`
         height: 100%;
     }
 
-
-    h1, h2, h3, h4, h5, h6, p {
-        padding: 0;
-        margin: 0;
+    h1, h3 {
+        margin: 0.5em 0;
     }
 
     a {

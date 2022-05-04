@@ -1,35 +1,37 @@
 import React, { lazy, Suspense } from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 
 const LinksPage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
-const CommsPage = lazy(() => import("./pages/CommsPage"));
+const ChatCommsPage = lazy(() => import("./pages/comms/ChatCommsPage"));
 
 function App() {
     return (
         <Router>
             <Routes>
                 <Route
-                    path="/"
+                    index
                     element={
-                        <Suspense fallback={4}>
+                        <Suspense fallback="Loading...">
                             <LinksPage />
                         </Suspense>
                     }
                 />
                 <Route
-                    path="/about"
+                    path="about"
                     element={
-                        <Suspense fallback={4}>
+                        <Suspense fallback="Loading...">
                             <AboutPage />
                         </Suspense>
                     }
                 />
+                <Route path="/comms" element={<Navigate to="/comms/chat" />} />
+
                 <Route
-                    path="/comms"
+                    path="/comms/chat"
                     element={
-                        <Suspense fallback={4}>
-                            <CommsPage />
+                        <Suspense fallback="Loading...">
+                            <ChatCommsPage />
                         </Suspense>
                     }
                 />

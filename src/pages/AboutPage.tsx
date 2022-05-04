@@ -14,9 +14,7 @@ const CreditsTable = styled.table`
 
 export default function AboutPage() {
     return (
-        <MyPage>
-            <h1>About</h1>
-            <hr style={{ width: 200 }} />
+        <MyPage title="About">
             <h3>Credits</h3>
             <CreditsTable>
                 <tbody>

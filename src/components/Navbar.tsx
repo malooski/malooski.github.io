@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { LinkProps, useMatch, useResolvedPath } from "react-router-dom";
+import styled, { css } from "styled-components";
 import { THEME } from "../constants";
 import { middleChildSelector } from "../util/css";
 
@@ -8,7 +9,7 @@ const NavDiv = styled.div`
     margin-bottom: 1em;
 `;
 
-const MyNavLink = styled(NavLink)`
+const MyNavLinkStyle = styled(Link)<{ active: boolean }>`
     color: white;
     background-image: linear-gradient(${THEME.colors.purple}, ${THEME.colors.pink});
     color: white;
@@ -17,28 +18,20 @@ const MyNavLink = styled(NavLink)`
     font-weight: bold;
 
     border: 1px solid ${THEME.colors.lightPink};
+    border-left: none;
+    border-right: none;
 
     :hover {
         color: ${THEME.colors.lightPink};
     }
-
-    :first-child {
-        border-top-left-radius: 16px;
-        border-bottom-left-radius: 16px;
-        border-right: none;
-    }
-
-    ${middleChildSelector} {
-        border-left: none;
-        border-right: none;
-    }
-
-    :last-child {
-        border-top-right-radius: 16px;
-        border-bottom-right-radius: 16px;
-        border-left: none;
-    }
 `;
+
+function MyNavLink(props: LinkProps) {
+    let resolved = useResolvedPath(props.to);
+    let match = useMatch({ path: resolved.pathname });
+
+    return <MyNavLinkStyle active={match != null} {...props} />;
+}
 
 export function Navbar() {
     return (
@@ -46,6 +39,16 @@ export function Navbar() {
             <MyNavLink to="/">Home</MyNavLink>
             <MyNavLink to="/about">About</MyNavLink>
             <MyNavLink to="/comms">Commissions</MyNavLink>
+        </NavDiv>
+    );
+}
+
+export function CommsNavbar() {
+    return (
+        <NavDiv>
+            <MyNavLink to="/comms/chat">Custom Chat</MyNavLink>
+            <MyNavLink to="/comms/site">Custom Site</MyNavLink>
+            <MyNavLink to="/comms/3d">3D Services</MyNavLink>
         </NavDiv>
     );
 }

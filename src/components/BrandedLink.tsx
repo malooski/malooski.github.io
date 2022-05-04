@@ -6,6 +6,7 @@ export interface BrandedLinkProps {
     bgColor: string;
     color?: string;
     text: string;
+    hoverText?: string;
 }
 
 const RootAnchor = styled.a<{ color: string; bgColor: string }>`
@@ -19,7 +20,6 @@ const RootAnchor = styled.a<{ color: string; bgColor: string }>`
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 
     :hover {
-        text-decoration: underline;
         box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
     }
 

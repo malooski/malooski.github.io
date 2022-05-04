@@ -10,7 +10,7 @@ import tiktokLogo from "../assets/tiktok logo.png";
 import twitchLogo from "../assets/twitch logo.png";
 import twitterLogo from "../assets/twitter logo.png";
 import youtubeLogo from "../assets/youtube logo.png";
-import BrandedLink from "../components/BrandedLink";
+import BrandedLink, { BrandedLinkProps } from "../components/BrandedLink";
 import MyPage from "./MyPage";
 
 const COLUMN_WIDTH = "200px";
@@ -50,105 +50,100 @@ const LinksDiv = styled.div`
     }
 `;
 
-interface LinkInfo {
-    text: string;
-
-    linkUrl: string;
-    imgUrl: string;
-    textColor: string;
-    bgColor: string;
-
+interface LinkInfo extends BrandedLinkProps {
     isFave?: boolean;
 }
 
 const LINKS: LinkInfo[] = [
     {
         text: "Twitter",
+        hoverText: "Follow me!",
         bgColor: "#1da1f2",
-        textColor: "#fff",
-        linkUrl: "https://twitter.com/malooski_vt",
-        imgUrl: twitterLogo,
+        color: "#fff",
+        href: "https://twitter.com/malooski_vt",
+        img: twitterLogo,
         isFave: true,
     },
     {
         text: "Twitch",
+        hoverText: "Follow me!",
         bgColor: "#6441a5",
-        textColor: "#fff",
-        linkUrl: "https://twitch.tv/malooski",
-        imgUrl: twitchLogo,
+        color: "#fff",
+        href: "https://twitch.tv/malooski",
+        img: twitchLogo,
         isFave: true,
     },
     {
         text: "TikTok",
         bgColor: "#fe2c55",
-        textColor: "white",
-        imgUrl: tiktokLogo,
-        linkUrl: "http://tiktok.com/@malooski",
+        color: "white",
+        img: tiktokLogo,
+        href: "http://tiktok.com/@malooski",
     },
 
     {
         text: "Discord",
         bgColor: "#36393f",
-        textColor: "white",
-        imgUrl: discordLogo,
-        linkUrl: "https://discord.com/invite/ahmyDJ5Pfr",
+        color: "white",
+        img: discordLogo,
+        href: "https://discord.com/invite/ahmyDJ5Pfr",
     },
     {
         text: "Gumroad",
         bgColor: "#f4f4f0",
-        textColor: "black",
-        imgUrl: gumroadLogo,
-        linkUrl: "https://malooski.gumroad.com/",
+        color: "black",
+        img: gumroadLogo,
+        href: "https://malooski.gumroad.com/",
     },
     {
         text: "Throne",
         bgColor: "#e4e1f9",
-        textColor: "black",
-        imgUrl: throneLogo,
-        linkUrl: "https://thrn.co/u/malooski",
+        color: "black",
+        img: throneLogo,
+        href: "https://thrn.co/u/malooski",
     },
     {
         text: "Ko-Fi",
         bgColor: "#ffffff",
-        textColor: "black",
-        imgUrl: kofiLogo,
-        linkUrl: "https://ko-fi.com/malooski",
+        color: "black",
+        img: kofiLogo,
+        href: "https://ko-fi.com/malooski",
     },
     {
         text: "Instagram",
         bgColor: "#fafafa",
-        textColor: "black",
-        imgUrl: instagramLogo,
-        linkUrl: "https://www.instagram.com/malooski_vt/",
+        color: "black",
+        img: instagramLogo,
+        href: "https://www.instagram.com/malooski_vt/",
     },
     {
         text: "StreamElements Tips",
         bgColor: "#1c233d",
-        textColor: "white",
-        imgUrl: streamelementsLogo,
-        linkUrl: "https://streamelements.com/malooski/tip",
+        color: "white",
+        img: streamelementsLogo,
+        href: "https://streamelements.com/malooski/tip",
     },
 
     {
         text: "YouTube",
         bgColor: "#ff0000",
-        textColor: "white",
-        imgUrl: youtubeLogo,
-        linkUrl: "https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg",
+        color: "white",
+        img: youtubeLogo,
+        href: "https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg",
     },
     {
         text: "Highlights",
         bgColor: "#ff0000",
-        textColor: "white",
-        imgUrl: youtubeLogo,
-        linkUrl: "https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ",
+        color: "white",
+        img: youtubeLogo,
+        href: "https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ",
     },
     {
         text: "Archive",
         bgColor: "#ff0000",
-        textColor: "white",
-        imgUrl: youtubeLogo,
-        linkUrl: "https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA",
+        color: "white",
+        img: youtubeLogo,
+        href: "https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA",
     },
 ];
 
@@ -163,13 +158,7 @@ export default function HomePage() {
                     <ul>
                         {faveLinks.map(l => (
                             <li key={l.text}>
-                                <BrandedLink
-                                    text={l.text}
-                                    bgColor={l.bgColor}
-                                    color={l.textColor}
-                                    img={l.imgUrl}
-                                    href={l.linkUrl}
-                                />
+                                <BrandedLink {...l} />
                             </li>
                         ))}
                     </ul>
@@ -179,13 +168,7 @@ export default function HomePage() {
                     <ul>
                         {notFaves.map(l => (
                             <li key={l.text}>
-                                <BrandedLink
-                                    text={l.text}
-                                    bgColor={l.bgColor}
-                                    color={l.textColor}
-                                    img={l.imgUrl}
-                                    href={l.linkUrl}
-                                />
+                                <BrandedLink {...l} />
                             </li>
                         ))}
                     </ul>

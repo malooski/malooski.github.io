@@ -104,7 +104,18 @@ const TwerkButton = styled.button<{ active: boolean }>`
     ${p => (p.active ? TwerkButtonActiveCss : TwerkButtonInactiveCss)}
 `;
 
-export default function MyPage(props: { children?: React.ReactNode }) {
+const Heading = styled.h1`
+    font-size: 3em;
+    margin: 0.25em 0;
+    padding: 0;
+`;
+
+export interface MyPageProps {
+    title?: string;
+    children?: React.ReactNode;
+}
+
+export default function MyPage(props: MyPageProps) {
     const [isTwerk, setIsTwerk] = useState(false);
 
     return (
@@ -118,6 +129,7 @@ export default function MyPage(props: { children?: React.ReactNode }) {
 
                 <LogoImg src={malooLogo} />
                 <Navbar />
+                {props.title && <Heading>{props.title}</Heading>}
 
                 <BodyDiv>{props.children}</BodyDiv>
 
