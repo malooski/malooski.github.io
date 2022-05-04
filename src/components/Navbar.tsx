@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
-import { LinkProps, useMatch, useResolvedPath } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { Link, LinkProps, useMatch, useResolvedPath } from "react-router-dom";
+import styled from "styled-components";
 import { THEME } from "../constants";
-import { middleChildSelector } from "../util/css";
 
 const NavDiv = styled.div`
     margin-top: 1em;
