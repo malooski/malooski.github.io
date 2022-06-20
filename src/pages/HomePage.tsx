@@ -56,6 +56,14 @@ interface LinkInfo extends BrandedLinkProps {
 
 const LINKS: LinkInfo[] = [
     {
+        text: "Schedule",
+        hoverText: "What's on",
+        bgColor: "#d77ed7",
+        color: "#fff",
+        href: "https://sched.maloo.ski",
+        isFave: true,
+    },
+    {
         text: "Twitter",
         hoverText: "Follow me!",
         bgColor: "#1da1f2",
