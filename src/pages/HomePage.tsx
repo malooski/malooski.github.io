@@ -131,7 +131,14 @@ const LINKS: LinkInfo[] = [
         img: streamelementsLogo,
         href: "https://streamelements.com/malooski/tip",
     },
-
+    {
+        text: "Twitter 🔞",
+        hoverText: "Follow me!",
+        bgColor: "#1da1f2",
+        color: "#fff",
+        href: "https://twitter.com/malewdski",
+        img: twitterLogo,
+    },
     {
         text: "YouTube",
         bgColor: "#ff0000",
