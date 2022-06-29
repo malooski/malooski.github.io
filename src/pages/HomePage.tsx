@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import styled from "styled-components";
 import discordLogo from "../assets/discord logo.png";
 import gumroadLogo from "../assets/gumroad logo.png";
@@ -50,9 +49,7 @@ const LinksDiv = styled.div`
     }
 `;
 
-interface LinkInfo extends BrandedLinkProps {
-    isFave?: boolean;
-}
+interface LinkInfo extends BrandedLinkProps {}
 
 const LINKS: LinkInfo[] = [
     {
@@ -61,7 +58,6 @@ const LINKS: LinkInfo[] = [
         bgColor: "#d77ed7",
         color: "#fff",
         href: "https://sched.maloo.ski",
-        isFave: true,
     },
     {
         text: "Twitter",
@@ -70,7 +66,6 @@ const LINKS: LinkInfo[] = [
         color: "#fff",
         href: "https://twitter.com/malooski_vt",
         img: twitterLogo,
-        isFave: true,
     },
     {
         text: "Twitch",
@@ -79,7 +74,6 @@ const LINKS: LinkInfo[] = [
         color: "#fff",
         href: "https://twitch.tv/malooski",
         img: twitchLogo,
-        isFave: true,
     },
     {
         text: "TikTok",
@@ -163,25 +157,12 @@ const LINKS: LinkInfo[] = [
 ];
 
 export default function HomePage() {
-    const faveLinks = useMemo(() => LINKS.filter(link => link.isFave), []);
-    const notFaves = useMemo(() => LINKS.filter(link => !link.isFave), []);
-
     return (
         <MyPage>
             <RootDiv>
                 <LinksDiv>
                     <ul>
-                        {faveLinks.map(l => (
-                            <li key={l.text}>
-                                <BrandedLink {...l} />
-                            </li>
-                        ))}
-                    </ul>
-                </LinksDiv>
-                <hr style={{ width: 400 }}></hr>
-                <LinksDiv>
-                    <ul>
-                        {notFaves.map(l => (
+                        {LINKS.map(l => (
                             <li key={l.text}>
                                 <BrandedLink {...l} />
                             </li>
