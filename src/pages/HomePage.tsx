@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import discordLogo from "../assets/discord logo.png";
 import gumroadLogo from "../assets/gumroad logo.png";
 import instagramLogo from "../assets/instagram logo.png";
@@ -9,6 +10,7 @@ import tiktokLogo from "../assets/tiktok logo.png";
 import twitchLogo from "../assets/twitch logo.png";
 import twitterLogo from "../assets/twitter logo.png";
 import youtubeLogo from "../assets/youtube logo.png";
+
 import BrandedLink, { BrandedLinkProps } from "../components/BrandedLink";
 import MyPage from "./MyPage";
 
