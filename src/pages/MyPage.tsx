@@ -1,7 +1,7 @@
+import { lazy, Suspense, useState } from "react";
 import styled, { css } from "styled-components";
 import { Navbar } from "../components/Navbar";
-import malooLogo from "../assets/Logo.png";
-import { lazy, Suspense, useState } from "react";
+import { MALOOSKI_LOGO_WEBM_URL } from "../constants";
 import { middleChildSelector } from "../util/css";
 
 const DancingMaloo = lazy(() => import("../components/DancingMaloo"));
@@ -35,11 +35,14 @@ const BorderDiv = styled.div`
 const InnerDiv = styled.div`
     border-radius: 16px;
     margin: 16px;
+
+    width: 800px;
     @media (max-width: 768px) {
         margin: 0px;
+        width: 100%;
     }
 
-    align-self: stretch;
+    align-self: center;
     flex-grow: 1;
     background-image: radial-gradient(#515257, #3b3846);
     background-size: cover;
@@ -49,9 +52,13 @@ const InnerDiv = styled.div`
     align-items: center;
 `;
 
-const LogoImg = styled.img`
-    margin: 1em 0;
-    width: min(90%, 900px);
+const LogoVideo = styled.video`
+    width: 100%;
+    margin: -10% 4%;
+
+    // click through
+    user-select: none;
+    pointer-events: none;
 `;
 
 const BodyDiv = styled.div`
@@ -127,7 +134,7 @@ export default function MyPage(props: MyPageProps) {
                     </Suspense>
                 )}
 
-                <LogoImg src={malooLogo} />
+                <LogoVideo autoPlay muted loop src={MALOOSKI_LOGO_WEBM_URL} />
                 <Navbar />
                 {props.title && <Heading>{props.title}</Heading>}
 

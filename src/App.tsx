@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
 const LinksPage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ArtworkPage = lazy(() => import("./pages/ArtworkPage"));
 
 function App() {
     return (
@@ -21,6 +22,14 @@ function App() {
                     element={
                         <Suspense fallback="Loading...">
                             <AboutPage />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="artwork"
+                    element={
+                        <Suspense fallback="Loading...">
+                            <ArtworkPage />
                         </Suspense>
                     }
                 />
