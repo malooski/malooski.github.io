@@ -48,6 +48,12 @@ const CREDITS: CreditEntry[] = [
         authorUrl: "https://twitter.com/OneLittleGnome/",
         authorName: "Ranvi",
     },
+    {
+        workName: "Controller PNG",
+        workUrl: "https://twitter.com/O_Kamivt/status/1550999923121856513",
+        authorName: "Orion Kami",
+        authorUrl: "https://twitter.com/O_Kamivt",
+    },
 ];
 
 const CREDITS_RADIUS = "1em";
@@ -91,11 +97,18 @@ const CreditsTable = styled.div`
     }
 `;
 
+const CreditsHeader = styled.div`
+    font-weight: bold;
+    font-size: 1.2em;
+`;
+
 export default function AboutPage() {
     return (
         <MyPage title="About">
             <h3>Credits</h3>
             <CreditsTable>
+                <CreditsHeader>Work</CreditsHeader>
+                <CreditsHeader>Author</CreditsHeader>
                 {CREDITS.map(credit => (
                     <>
                         <div>
