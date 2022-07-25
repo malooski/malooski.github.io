@@ -40,8 +40,8 @@ export default memo((props: ThumbnailCycleImgProps) => {
     const { urls, intervalMs, transitionMs } = props;
     usePreloadImages(urls);
 
-    const [currIdx, setCurrIdx] = useState(0);
-    const [newIdx, setNewIdx] = useState(1 % urls.length);
+    const [currIdx] = useState(0);
+    const [newIdx] = useState(1 % urls.length);
     const [reveal, setReveal] = useState(false);
 
     useInterval(() => {
