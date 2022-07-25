@@ -1,20 +1,18 @@
-import styled from "styled-components";
-import { faArrowUpRightFromSquare, faLink } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components";
 
 import MyPage from "./MyPage";
 
-import trashpitsComm1Url from "../assets/thumbnails/trashpits comm 1.jpg";
-import trashpitsComm2Url from "../assets/thumbnails/trashpits comm 2.jpg";
 import nekovoidCommUrl from "../assets/thumbnails/nekovoid comm.jpg";
-import ranviCommOpenUrl from "../assets/thumbnails/ranvi comm open.jpg";
 import ranviCommClosedUrl from "../assets/thumbnails/ranvi comm closed.jpg";
+import ranviCommOpenUrl from "../assets/thumbnails/ranvi comm open.jpg";
 import rexCommUrl from "../assets/thumbnails/rex comm.jpg";
 import soieDanceFanartUrl from "../assets/thumbnails/soie dance fanart.gif";
+import trashpitsComm1Url from "../assets/thumbnails/trashpits comm 1.jpg";
+import trashpitsComm2Url from "../assets/thumbnails/trashpits comm 2.jpg";
 
 import { useState } from "react";
-import useCycleInterval from "../util/hooks/use_cycle_interval";
-import usePreloadImages from "../util/hooks/use_preload_images";
 import ThumbnailCycle from "../components/ThumbnailCycle";
 
 enum ArtworkType {

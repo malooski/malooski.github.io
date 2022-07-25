@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import styled from "styled-components";
 import useInterval from "../util/hooks/use_interval";
 import usePreloadImages from "../util/hooks/use_preload_images";
