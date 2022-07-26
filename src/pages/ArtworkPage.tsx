@@ -11,6 +11,7 @@ import rexCommUrl from "../assets/thumbnails/rex comm.jpg";
 import soieDanceFanartUrl from "../assets/thumbnails/soie dance fanart.gif";
 import trashpitsComm1Url from "../assets/thumbnails/trashpits comm 1.jpg";
 import trashpitsComm2Url from "../assets/thumbnails/trashpits comm 2.jpg";
+import hatchetCommUrl from "../assets/thumbnails/hatchet comm.jpg";
 
 import { useState } from "react";
 import ThumbnailCycle from "../components/ThumbnailCycle";
@@ -33,12 +34,12 @@ interface ArtworkInfo {
 
 const ARTWORKS: ArtworkInfo[] = [
     {
-        workUrl: "https://twitter.com/malooski_vt/status/1541513514904436738",
         imgUrl: [],
-        thumbUrls: [trashpitsComm1Url, trashpitsComm2Url],
-        authorName: "Trashpits",
-        authorUrl: "https://twitter.com/trashpits",
         type: ArtworkType.COMMISSION,
+        thumbUrls: [hatchetCommUrl],
+        workUrl: "https://twitter.com/malooski_vt/status/1552064016129875971",
+        authorName: "Hatchet",
+        authorUrl: "https://twitter.com/HatchetBat",
     },
     {
         imgUrl: [],
@@ -46,6 +47,14 @@ const ARTWORKS: ArtworkInfo[] = [
         thumbUrls: [nekovoidCommUrl],
         authorName: "Nekovoid",
         authorUrl: "https://www.fiverr.com/nekovoid",
+        type: ArtworkType.COMMISSION,
+    },
+    {
+        workUrl: "https://twitter.com/malooski_vt/status/1541513514904436738",
+        imgUrl: [],
+        thumbUrls: [trashpitsComm1Url, trashpitsComm2Url],
+        authorName: "Trashpits",
+        authorUrl: "https://twitter.com/trashpits",
         type: ArtworkType.COMMISSION,
     },
     {
@@ -110,7 +119,7 @@ const ThumbnailDiv = styled.div<{ hovering: boolean }>`
     background-size: cover;
     position: relative;
 
-    box-shadow: ${props => (props.hovering ? "0.1em 0.1em 1em rgba(0, 0, 0, 0.8)" : "none")};
+    box-shadow: ${props => (props.hovering ? "none" : "0.1em 0.1em 1em rgba(0, 0, 0, 0.5)")};
     transition: box-shadow 0.2s ease-in-out;
 
     overflow: hidden;
