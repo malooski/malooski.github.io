@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmalooski_github_io=self.webpackChunkmalooski_github_io||[]).push([[222],{4222:function(i,e,s){i.exports=s.p+"static/media/Dancing Twerk.ef9fc4e8057f35a5bf7d.fbx"}}]);
