@@ -14,6 +14,7 @@ export enum ArtworkType {
 }
 
 export interface ArtworkInfo {
+    id: string;
     type: ArtworkType;
 
     thumbUrls: string[];
@@ -28,6 +29,7 @@ export interface ArtworkInfo {
 
 export const ARTWORKS: ArtworkInfo[] = [
     {
+        id: "1555012934916624385",
         title: "Wanna chill out?",
         type: ArtworkType.COMMISSION,
         thumbUrls: [yantiCommUrl],
@@ -37,6 +39,8 @@ export const ARTWORKS: ArtworkInfo[] = [
         authorUrl: "https://www.fiverr.com/yanti_ayen_19",
     },
     {
+        id: "1552064016129875971",
+        title: "Floating through life",
         imgUrl: ["https://malooski-public.s3.us-east-2.amazonaws.com/artwork/hatchet+fullbody.jpg"],
         type: ArtworkType.COMMISSION,
         thumbUrls: [hatchetCommUrl],
@@ -45,6 +49,8 @@ export const ARTWORKS: ArtworkInfo[] = [
         authorUrl: "https://twitter.com/HatchetBat",
     },
     {
+        id: "1545386368850972672",
+        title: "You didn't see me here",
         imgUrl: [
             "https://malooski-public.s3.us-east-2.amazonaws.com/artwork/nekovoid+A.jpg",
             "https://malooski-public.s3.us-east-2.amazonaws.com/artwork/nekovoid+A1.jpg",
@@ -58,6 +64,8 @@ export const ARTWORKS: ArtworkInfo[] = [
         type: ArtworkType.COMMISSION,
     },
     {
+        id: "1541513514904436738",
+        title: "Running from everything",
         workUrl: "https://twitter.com/malooski_vt/status/1541513514904436738",
         imgUrl: [
             "https://malooski-public.s3.us-east-2.amazonaws.com/artwork/trashpits+screens.jpg",
@@ -69,6 +77,7 @@ export const ARTWORKS: ArtworkInfo[] = [
         type: ArtworkType.COMMISSION,
     },
     {
+        id: "1541927930246447104",
         imgUrl: [],
         workUrl: "https://twitter.com/malooski_vt/status/1541927930246447104",
         thumbUrls: [ranviCommClosedUrl, ranviCommOpenUrl],
@@ -77,6 +86,8 @@ export const ARTWORKS: ArtworkInfo[] = [
         type: ArtworkType.COMMISSION,
     },
     {
+        id: "1544709179436371968",
+        title: "Computers annoy me sometimes...",
         imgUrl: [],
         type: ArtworkType.COMMISSION,
         thumbUrls: [rexCommUrl],
@@ -85,6 +96,8 @@ export const ARTWORKS: ArtworkInfo[] = [
         authorUrl: "https://twitter.com/RexFelixENVT",
     },
     {
+        id: "1545050758080368643",
+        title: "🎶Dance till you're dead🎶",
         imgUrl: [
             "https://malooski-public.s3.us-east-2.amazonaws.com/artwork/soie+dance+fanart.gif",
         ],

@@ -5,9 +5,9 @@ import styled from "styled-components";
 import MyPage from "./MyPage";
 
 import { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ThumbnailCycle from "../components/ThumbnailCycle";
 import { ArtworkInfo, ARTWORKS, ArtworkType } from "../lib/artwork";
-import FullscreenArtModal from "../components/FullscreenArtModal";
 
 const ArtworksDiv = styled.div`
     display: flex;
@@ -82,6 +82,10 @@ const FooterInfoContainer = styled.div<{ hovering: boolean }>`
     transition: bottom 0.2s ease-in-out;
 `;
 
+const TitleDiv = styled.div`
+    font-size: 0.8em;
+`;
+
 const FooterInfoContents = styled.div`
     margin: 0.5em;
 `;
@@ -89,16 +93,15 @@ function ArtworkEntry(props: ArtworkEntryProps) {
     const { artwork } = props;
 
     const [hovering, setHovering] = useState(false);
-    const [isExpanded, setIsExpanded] = useState(false);
 
     const typeText = artwork.type === ArtworkType.COMMISSION ? "Commission" : "Fanart";
 
+    const navigate = useNavigate();
+
     const onExpand = useCallback(() => {
         if (artwork.imgUrl.length === 0) return;
-        setIsExpanded(true);
-    }, [artwork]);
-
-    const onClose = useCallback(() => setIsExpanded(false), []);
+        navigate(`/artwork/${artwork.id}`);
+    }, [artwork, navigate]);
 
     return (
         <>
@@ -111,11 +114,10 @@ function ArtworkEntry(props: ArtworkEntryProps) {
                 <ThumbnailCycle urls={artwork.thumbUrls} intervalMs={5000} transitionMs={2000} />
                 <HeaderContainer hovering={hovering}>
                     <HeaderContents>
-                        <div></div>
+                        <TitleDiv>{artwork.title}</TitleDiv>
                         <div>
                             <a href={artwork.workUrl} rel="noreferrer" target="_blank">
-                                Original{" "}
-                                <FontAwesomeIcon size="xs" icon={faArrowUpRightFromSquare} />
+                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                             </a>
                         </div>
                     </HeaderContents>
@@ -130,7 +132,6 @@ function ArtworkEntry(props: ArtworkEntryProps) {
                     </FooterInfoContents>
                 </FooterInfoContainer>
             </ThumbnailDiv>
-            {isExpanded && <FullscreenArtModal artwork={artwork} onClose={onClose} />}
         </>
     );
 }

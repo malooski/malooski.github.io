@@ -5,6 +5,7 @@ const LinksPage = lazy(() => import("./pages/HomePage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const CommsPage = lazy(() => import("./pages/CommsPage"));
 const ArtworkPage = lazy(() => import("./pages/ArtworkPage"));
+const ExpandedArtworkPage = lazy(() => import("./pages/ExpandedArtworkPage"));
 
 function App() {
     return (
@@ -31,6 +32,14 @@ function App() {
                     element={
                         <Suspense fallback="Loading...">
                             <ArtworkPage />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="artwork/:id"
+                    element={
+                        <Suspense fallback="Loading...">
+                            <ExpandedArtworkPage />
                         </Suspense>
                     }
                 />

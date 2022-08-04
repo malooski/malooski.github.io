@@ -1,17 +1,12 @@
 import { faArrowLeft, faArrowRight, faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { ArtworkInfo } from "../lib/artwork";
+import { ArtworkInfo, ARTWORKS } from "../lib/artwork";
 import { useImageLoading } from "../util/hooks/use_image_loading";
 
-interface FullscreenArtworkViewerProps {
-    artwork: ArtworkInfo;
-    onClose: () => void;
-}
-
 const RootDiv = styled.div`
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -94,74 +89,43 @@ const PageIndicator = styled.div`
     padding: 0.5em;
 `;
 
-export default memo((props: FullscreenArtworkViewerProps) => {
-    const { artwork, onClose } = props;
+export default function ExpandedArtworkPage() {
+    const params = useParams();
+    const artwork = useMemo(() => ARTWORKS.find(a => a.id === params.id), [params.id]);
+
+    if (!artwork) {
+        return <Navigate to="/artwork" />;
+    }
+
+    return <ExpandedArtworkFoundPage artwork={artwork} />;
+}
+
+const ExpandedArtworkFoundPage = memo((props: { artwork: ArtworkInfo }) => {
+    const { artwork } = props;
 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [dragging, setDragging] = useState(false);
-    const [xOffset, setXOffset] = useState(0);
-    const [yOffset, setYOffset] = useState(0);
-    const [zoom, setZoom] = useState(1);
-
-    const onResetTransform = useCallback(() => {
-        setXOffset(0);
-        setYOffset(0);
-        setZoom(1);
-    }, []);
 
     const onLeftArrowClick = useCallback(() => {
         setCurrentIndex(prev => (prev + artwork.imgUrl.length - 1) % artwork.imgUrl.length);
-        onResetTransform();
-    }, [artwork.imgUrl.length, onResetTransform]);
+    }, [artwork.imgUrl.length]);
 
     const onRightArrowClick = useCallback(() => {
         setCurrentIndex(prev => (prev + 1) % artwork.imgUrl.length);
-        onResetTransform();
-    }, [artwork.imgUrl.length, onResetTransform]);
+    }, [artwork.imgUrl.length]);
 
     const imgUrl = artwork.imgUrl[currentIndex];
     const bgImg = `url('${imgUrl}')`;
 
     const { loading } = useImageLoading(imgUrl);
 
-    const onStartDragging = useCallback((e: React.MouseEvent) => {
-        e.preventDefault();
-        setDragging(true);
-    }, []);
-    const onDragging = useCallback(
-        (e: React.MouseEvent<HTMLDivElement>) => {
-            e.preventDefault();
-            if (!dragging) return;
-
-            const { movementX, movementY } = e;
-            setXOffset(prev => prev + movementX);
-            setYOffset(prev => prev + movementY);
-        },
-        [dragging]
-    );
-
-    const onStopDragging = useCallback((e: React.MouseEvent) => {
-        e.preventDefault();
-        setDragging(false);
-    }, []);
-
-    const onImgWheel = useCallback((e: React.WheelEvent<HTMLDivElement>) => {
-        e.preventDefault();
-        const { deltaY } = e;
-        setZoom(prev => Math.min(Math.max(prev + deltaY / 1000, 0.1), 6));
-    }, []);
-
-    const transform = `translate(${xOffset}px, ${yOffset}px) scale(${zoom})`;
+    const navigate = useNavigate();
+    const onClose = useCallback(() => {
+        navigate("/artwork");
+    }, [navigate]);
 
     return (
         <RootDiv>
-            <ImgDiv
-                onWheel={onImgWheel}
-                onMouseDown={onStartDragging}
-                onMouseMove={onDragging}
-                onMouseUp={onStopDragging}
-                style={{ backgroundImage: bgImg, transform }}
-            >
+            <ImgDiv style={{ backgroundImage: bgImg }}>
                 {loading && <FontAwesomeIcon icon={faSpinner} spin size="10x" />}
             </ImgDiv>
 
