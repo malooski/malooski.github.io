@@ -1,9 +1,10 @@
 import { faArrowLeft, faArrowRight, faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo, useCallback, useMemo, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { memo, useMemo } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { ArtworkInfo, ARTWORKS } from "../lib/artwork";
+import { ArtworkInfo, ARTWORKS, ArtworkType } from "../lib/artwork";
+import { clampToCycle, parseIntOrNull } from "../util";
 import { useImageLoading } from "../util/hooks/use_image_loading";
 
 const RootDiv = styled.div`
@@ -30,9 +31,13 @@ const ImgDiv = styled.div`
 
     width: 100%;
     height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
-const MyButton = styled.button`
+const MyButton = styled(Link)`
     border: none;
     font-size: 2em;
     padding: 0.25em;
@@ -40,10 +45,6 @@ const MyButton = styled.button`
 
     background-color: rgba(255, 255, 255, 0.8);
     transition: padding 0.2s ease-in-out;
-
-    :hover {
-        padding: 0.5em;
-    }
 `;
 
 const PrevImageButton = styled(MyButton)`
@@ -72,6 +73,8 @@ const CloseButton = styled(MyButton)`
     right: 0;
     top: 0;
 
+    color: white;
+    padding: 0.2em 0.5em;
     background-color: rgba(255, 0, 0, 0.8);
 
     border-radius: 0 0 0 0.5em;
@@ -89,39 +92,64 @@ const PageIndicator = styled.div`
     padding: 0.5em;
 `;
 
+const InfoPanelDiv = styled.div`
+    position: fixed;
+    top: 1em;
+    left: 1em;
+
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0.5em;
+    padding: 0.5em;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1em;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+`;
+
+const InfoPanelGrid = styled.div`
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5em 1em;
+`;
+
 export default function ExpandedArtworkPage() {
     const params = useParams();
-    const artwork = useMemo(() => ARTWORKS.find(a => a.id === params.id), [params.id]);
+    const artwork = useMemo(
+        () => ARTWORKS.find(a => a.id === params.artworkId),
+        [params.artworkId]
+    );
 
     if (!artwork) {
         return <Navigate to="/artwork" />;
     }
 
-    return <ExpandedArtworkFoundPage artwork={artwork} />;
+    const pages = artwork.imgUrl.length;
+    const pageIdx = clampToCycle((parseIntOrNull(params.page) ?? 1) - 1, pages);
+
+    return <ExpandedArtworkFoundPage artwork={artwork} pageIdx={pageIdx} />;
 }
 
-const ExpandedArtworkFoundPage = memo((props: { artwork: ArtworkInfo }) => {
-    const { artwork } = props;
+interface ExpandedArtworkFoundPageProps {
+    artwork: ArtworkInfo;
+    pageIdx: number;
+}
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+const ExpandedArtworkFoundPage = memo((props: ExpandedArtworkFoundPageProps) => {
+    const { artwork, pageIdx = 0 } = props;
+    const pagesTotal = artwork.imgUrl.length;
 
-    const onLeftArrowClick = useCallback(() => {
-        setCurrentIndex(prev => (prev + artwork.imgUrl.length - 1) % artwork.imgUrl.length);
-    }, [artwork.imgUrl.length]);
-
-    const onRightArrowClick = useCallback(() => {
-        setCurrentIndex(prev => (prev + 1) % artwork.imgUrl.length);
-    }, [artwork.imgUrl.length]);
-
-    const imgUrl = artwork.imgUrl[currentIndex];
+    const imgUrl = artwork.imgUrl[pageIdx];
     const bgImg = `url('${imgUrl}')`;
 
     const { loading } = useImageLoading(imgUrl);
 
-    const navigate = useNavigate();
-    const onClose = useCallback(() => {
-        navigate("/artwork");
-    }, [navigate]);
+    const prevPageIdx = clampToCycle(pageIdx - 1, pagesTotal);
+    const prevPagePath = `/artwork/${artwork.id}/${prevPageIdx + 1}`;
+    const nextPageIdx = clampToCycle(pageIdx + 1, pagesTotal);
+    const nextPagePath = `/artwork/${artwork.id}/${nextPageIdx + 1}`;
+    const typeText = artwork.type === ArtworkType.COMMISSION ? "Commission" : "Fan Art";
 
     return (
         <RootDiv>
@@ -131,20 +159,43 @@ const ExpandedArtworkFoundPage = memo((props: { artwork: ArtworkInfo }) => {
 
             {artwork.imgUrl.length > 1 && (
                 <>
-                    <PrevImageButton onClick={onLeftArrowClick}>
+                    <PrevImageButton to={prevPagePath}>
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </PrevImageButton>
-                    <NextImageButton onClick={onRightArrowClick}>
+                    <NextImageButton to={nextPagePath}>
                         <FontAwesomeIcon icon={faArrowRight} />
                     </NextImageButton>
                     <PageIndicator>
-                        {currentIndex + 1} / {artwork.imgUrl.length}
+                        {pageIdx + 1} / {artwork.imgUrl.length}
                     </PageIndicator>
                 </>
             )}
-            <CloseButton onClick={onClose}>
+            <CloseButton to="/artwork">
                 <FontAwesomeIcon icon={faTimes} />
             </CloseButton>
+
+            <InfoPanelDiv>
+                <div>
+                    <a href={artwork.workUrl} rel="noreferrer" target="_blank">
+                        {artwork.title ?? "Untitled"}
+                    </a>
+                </div>
+                <InfoPanelGrid>
+                    <div>Artist</div>
+                    <div>
+                        <a href={artwork.authorUrl} rel="noreferrer" target="_blank">
+                            {artwork.authorName}
+                        </a>
+                    </div>
+                    <div>Type</div>
+                    <div>{typeText}</div>
+
+                    <div>Page</div>
+                    <div>
+                        {pageIdx + 1} / {artwork.imgUrl.length}
+                    </div>
+                </InfoPanelGrid>
+            </InfoPanelDiv>
         </RootDiv>
     );
 });

@@ -1,56 +1,51 @@
 import { lazy, Suspense } from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
-const LinksPage = lazy(() => import("./pages/HomePage"));
-const AboutPage = lazy(() => import("./pages/AboutPage"));
-const CommsPage = lazy(() => import("./pages/CommsPage"));
-const ArtworkPage = lazy(() => import("./pages/ArtworkPage"));
-const ExpandedArtworkPage = lazy(() => import("./pages/ExpandedArtworkPage"));
+const LazyHomePage = lazy(() => import("./pages/HomePage"));
+const HomePage = () => (
+    <Suspense fallback="Loading...">
+        <LazyHomePage />
+    </Suspense>
+);
+
+const LazyAboutPage = lazy(() => import("./pages/AboutPage"));
+const AboutPage = () => (
+    <Suspense fallback="Loading...">
+        <LazyAboutPage />
+    </Suspense>
+);
+
+const LazyArtworkPage = lazy(() => import("./pages/ArtworkPage"));
+const ArtworkPage = () => (
+    <Suspense fallback="Loading...">
+        <LazyArtworkPage />
+    </Suspense>
+);
+
+const LazyExpandedArtworkPage = lazy(() => import("./pages/ExpandedArtworkPage"));
+const ExpandedArtworkPage = () => (
+    <Suspense fallback="Loading...">
+        <LazyExpandedArtworkPage />
+    </Suspense>
+);
+
+const LazyCommsPage = lazy(() => import("./pages/CommsPage"));
+const CommsPage = () => (
+    <Suspense fallback="Loading...">
+        <LazyCommsPage />
+    </Suspense>
+);
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route
-                    index
-                    element={
-                        <Suspense fallback="Loading...">
-                            <LinksPage />
-                        </Suspense>
-                    }
-                />
-                <Route
-                    path="about"
-                    element={
-                        <Suspense fallback="Loading...">
-                            <AboutPage />
-                        </Suspense>
-                    }
-                />
-                <Route
-                    path="artwork"
-                    element={
-                        <Suspense fallback="Loading...">
-                            <ArtworkPage />
-                        </Suspense>
-                    }
-                />
-                <Route
-                    path="artwork/:id"
-                    element={
-                        <Suspense fallback="Loading...">
-                            <ExpandedArtworkPage />
-                        </Suspense>
-                    }
-                />
-                <Route
-                    path="comms"
-                    element={
-                        <Suspense fallback="Loading...">
-                            <CommsPage />
-                        </Suspense>
-                    }
-                />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/artwork" element={<ArtworkPage />} />
+                <Route path="/artwork/:artworkId" element={<ExpandedArtworkPage />} />
+                <Route path="/artwork/:artworkId/:page" element={<ExpandedArtworkPage />} />
+                <Route path="comms" element={<CommsPage />} />
             </Routes>
         </Router>
     );
