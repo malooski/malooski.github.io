@@ -6,3 +6,9 @@ export async function preloadImage(src: string) {
         img.src = src;
     });
 }
+
+export function isMobileBrowser() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+    );
+}

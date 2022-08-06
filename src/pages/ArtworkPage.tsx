@@ -2,12 +2,11 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
-import MyPage from "./MyPage";
-
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ThumbnailCycle from "../components/ThumbnailCycle";
 import { ArtworkInfo, ARTWORKS, ArtworkType } from "../lib/artwork";
+import { isMobileBrowser } from "../util/dom";
 
 const ArtworksDiv = styled.div`
     display: flex;
@@ -22,13 +21,11 @@ const ArtworksDiv = styled.div`
 
 export default function AboutPage() {
     return (
-        <MyPage title="Artwork">
-            <ArtworksDiv>
-                {ARTWORKS.map(a => (
-                    <ArtworkEntry artwork={a} />
-                ))}
-            </ArtworksDiv>
-        </MyPage>
+        <ArtworksDiv>
+            {ARTWORKS.map(a => (
+                <ArtworkEntry artwork={a} />
+            ))}
+        </ArtworksDiv>
     );
 }
 
@@ -92,13 +89,22 @@ const FooterInfoContents = styled.div`
 function ArtworkEntry(props: ArtworkEntryProps) {
     const { artwork } = props;
 
-    const [hovering, setHovering] = useState(false);
+    const [mouseHovering, setMouseHovering] = useState(false);
+    const showDetails = mouseHovering || isMobileBrowser();
 
     const typeText = artwork.type === ArtworkType.COMMISSION ? "Commission" : "Fanart";
 
     const navigate = useNavigate();
 
-    const onExpand = useCallback(() => {
+    const onThumbnailEnter = useCallback(() => {
+        setMouseHovering(true);
+    }, []);
+
+    const onThumbnailLeave = useCallback(() => {
+        setMouseHovering(false);
+    }, []);
+
+    const onThumbnailClick = useCallback(() => {
         if (artwork.imgUrl.length === 0) return;
         navigate(`/artwork/${artwork.id}`);
     }, [artwork, navigate]);
@@ -106,13 +112,13 @@ function ArtworkEntry(props: ArtworkEntryProps) {
     return (
         <>
             <ThumbnailDiv
-                hovering={hovering}
-                onMouseEnter={() => setHovering(true)}
-                onMouseLeave={() => setHovering(false)}
-                onClick={onExpand}
+                hovering={mouseHovering}
+                onMouseEnter={onThumbnailEnter}
+                onMouseLeave={onThumbnailLeave}
+                onClick={onThumbnailClick}
             >
                 <ThumbnailCycle urls={artwork.thumbUrls} intervalMs={5000} transitionMs={2000} />
-                <HeaderContainer hovering={hovering}>
+                <HeaderContainer hovering={showDetails}>
                     <HeaderContents>
                         <TitleDiv>{artwork.title}</TitleDiv>
                         <div>
@@ -122,7 +128,7 @@ function ArtworkEntry(props: ArtworkEntryProps) {
                         </div>
                     </HeaderContents>
                 </HeaderContainer>
-                <FooterInfoContainer hovering={hovering}>
+                <FooterInfoContainer hovering={showDetails}>
                     <FooterInfoContents>
                         {typeText} by{" "}
                         <a href={artwork.authorUrl} rel="noreferrer" target="_blank">

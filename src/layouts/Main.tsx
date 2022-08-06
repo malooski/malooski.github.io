@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState } from "react";
+import { Outlet } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { Navbar } from "../components/Navbar";
 import { MALOOSKI_LOGO_WEBM_URL } from "../constants";
@@ -111,18 +112,7 @@ const TwerkButton = styled.button<{ active: boolean }>`
     ${p => (p.active ? TwerkButtonActiveCss : TwerkButtonInactiveCss)}
 `;
 
-const Heading = styled.h1`
-    font-size: 3em;
-    margin: 0.25em 0;
-    padding: 0;
-`;
-
-export interface MyPageProps {
-    title?: string;
-    children?: React.ReactNode;
-}
-
-export default function MyPage(props: MyPageProps) {
+export default function MainLayout() {
     const [isTwerk, setIsTwerk] = useState(false);
 
     return (
@@ -136,9 +126,10 @@ export default function MyPage(props: MyPageProps) {
 
                 <LogoVideo autoPlay muted loop src={MALOOSKI_LOGO_WEBM_URL} />
                 <Navbar />
-                {props.title && <Heading>{props.title}</Heading>}
 
-                <BodyDiv>{props.children}</BodyDiv>
+                <BodyDiv>
+                    <Outlet />
+                </BodyDiv>
 
                 <FooterDiv>
                     <div></div>

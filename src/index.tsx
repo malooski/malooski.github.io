@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App";
+import AppRoutes from "./AppRoutes";
 import GlobalStyle from "./components/GlobalStyle";
 import reportWebVitals from "./reportWebVitals";
 
@@ -9,7 +9,7 @@ const root = createRoot(rootElement!);
 root.render(
     <StrictMode>
         <GlobalStyle />
-        <App />
+        <AppRoutes />
     </StrictMode>
 );
 

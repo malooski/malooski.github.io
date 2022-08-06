@@ -12,20 +12,8 @@ import twitterLogo from "../assets/twitter logo.png";
 import youtubeLogo from "../assets/youtube logo.png";
 
 import BrandedLink, { BrandedLinkProps } from "../components/BrandedLink";
-import MyPage from "./MyPage";
 
 const COLUMN_WIDTH = "200px";
-
-const RootDiv = styled.div`
-    width: 100%;
-    height: 100%;
-    padding: 0px;
-    margin: 0px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
 
 const LinksDiv = styled.div`
     padding: 1em 2em;
@@ -158,20 +146,16 @@ const LINKS: LinkInfo[] = [
     },
 ];
 
-export default function HomePage() {
+export default function LinksPage() {
     return (
-        <MyPage>
-            <RootDiv>
-                <LinksDiv>
-                    <ul>
-                        {LINKS.map(l => (
-                            <li key={l.text}>
-                                <BrandedLink {...l} />
-                            </li>
-                        ))}
-                    </ul>
-                </LinksDiv>
-            </RootDiv>
-        </MyPage>
+        <LinksDiv>
+            <ul>
+                {LINKS.map(l => (
+                    <li key={l.text}>
+                        <BrandedLink {...l} />
+                    </li>
+                ))}
+            </ul>
+        </LinksDiv>
     );
 }

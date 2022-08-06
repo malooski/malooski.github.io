@@ -1,6 +1,6 @@
+import { Fragment } from "react";
 import styled from "styled-components";
 import Link from "../components/Link";
-import MyPage from "./MyPage";
 
 interface CreditEntry {
     workName: string;
@@ -104,7 +104,7 @@ const CreditsHeader = styled.div`
 
 export default function AboutPage() {
     return (
-        <MyPage title="About">
+        <Fragment>
             <h3>Credits</h3>
             <CreditsTable>
                 <CreditsHeader>Work</CreditsHeader>
@@ -139,6 +139,6 @@ export default function AboutPage() {
                 <li>Github Pages</li>
                 <li>React Router</li>
             </ul>
-        </MyPage>
+        </Fragment>
     );
 }
