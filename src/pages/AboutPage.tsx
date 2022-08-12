@@ -18,6 +18,12 @@ const CREDITS: CreditEntry[] = [
         authorUrl: "https://twitter.com/enricaheid",
     },
     {
+        workName: "Emotes",
+        workUrl: "https://twitter.com/malooski_vt/status/1556992651043512320",
+        authorName: "Meirritory ",
+        authorUrl: "https://www.fiverr.com/meirritory",
+    },
+    {
         workName: "Concept",
         workUrl: "https://twitter.com/malooski_vt/status/1541805801530064898",
         authorUrl: "https://twitter.com/ghostaficionado/",

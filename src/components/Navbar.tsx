@@ -9,29 +9,33 @@ const NavDiv = styled.div`
 
 const MyNavLinkStyle = styled(Link)<{ active: boolean }>`
     color: white;
-    padding: 8px 16px;
+    margin: 8px 16px;
     text-decoration: none;
     font-weight: bold;
+
+    border-bottom: ${props => (props.active ? "2px solid white" : "2px solid transparent")};
+
+    transition: border-bottom 0.2s ease-in-out;
 
     :hover {
         color: ${THEME.colors.lightPink};
     }
 `;
 
-function MyNavLink(props: LinkProps) {
+function CustomLink(props: LinkProps) {
     let resolved = useResolvedPath(props.to);
     let match = useMatch({ path: resolved.pathname });
 
-    return <MyNavLinkStyle active={match != null} {...props} />;
+    return <MyNavLinkStyle active={!!match} {...props} />;
 }
 
 export function Navbar() {
     return (
         <NavDiv>
-            <MyNavLink to="/">Home</MyNavLink>
-            <MyNavLink to="/about">About</MyNavLink>
-            <MyNavLink to="/artwork">Artwork</MyNavLink>
-            <MyNavLink to="/comms">Commissions</MyNavLink>
+            <CustomLink to="/">Home</CustomLink>
+            <CustomLink to="/about">About</CustomLink>
+            <CustomLink to="/artwork">Artwork</CustomLink>
+            <CustomLink to="/comms">Commissions</CustomLink>
         </NavDiv>
     );
 }
