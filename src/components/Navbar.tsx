@@ -35,6 +35,7 @@ export function Navbar() {
             <CustomLink to="/">Home</CustomLink>
             <CustomLink to="/about">About</CustomLink>
             <CustomLink to="/artwork">Artwork</CustomLink>
+            <CustomLink to="/ref">Ref</CustomLink>
             <CustomLink to="/comms">Commissions</CustomLink>
         </NavDiv>
     );
