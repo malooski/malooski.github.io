@@ -31,7 +31,7 @@ const HOVER_SPOTS: HoverSpot[] = [
         name: "Threat-Detecting Eyes",
         offsetX: 35,
         offsetY: 35,
-        text: "This is an eye",
+        text: "A HUD overlay of the eyes, allowing the user to gauge threat model and priority.",
         bbox: {
             x: 31.5,
             y: 41.5,
@@ -76,10 +76,10 @@ const HOVER_SPOTS: HoverSpot[] = [
         },
     },
     {
-        name: "Tubes",
+        name: "Liquid Cooling",
         offsetX: 65,
         offsetY: 20,
-        text: "Hacking fluid. Cuz, ya know. Hacking needs fluids.",
+        text: "Internal systems run pretty hot and Liquid cooling can help regulate it.",
         bbox: {
             x: 67.5,
             y: 32,
@@ -88,10 +88,10 @@ const HOVER_SPOTS: HoverSpot[] = [
         },
     },
     {
-        name: "Circuit Lines",
+        name: "Augmentation Markings",
         offsetX: 80,
         offsetY: 20,
-        text: "Signs of augmentation",
+        text: "Cybernetic scars from previous, invasive modifications to improve biological compatibility with machines.",
         bbox: {
             x: 83.5,
             y: 30,
