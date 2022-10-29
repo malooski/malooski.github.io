@@ -36,12 +36,6 @@ const CREDITS: CreditEntry[] = [
         authorName: "Delichan3D",
     },
     {
-        workName: "Twitch Emotes",
-        authorName: "Kavyun",
-        authorUrl: "https://twitter.com/KavyunArt",
-    },
-
-    {
         workName: "Logo",
         workUrl: "https://twitter.com/malooski_vt/status/1513497107751133193",
 
