@@ -1,8 +1,6 @@
 import { Fragment, useState } from "react";
 import styled from "styled-components";
 
-import refImgUrl from "../assets/Ref Sheet No Descriptions.png";
-
 const REF_IMG_URL =
     "https://malooski-public.s3.us-east-2.amazonaws.com/Ref+Sheet+No+Descriptions.png";
 
