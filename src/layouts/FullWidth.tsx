@@ -47,7 +47,8 @@ const LogoVideo = styled.video`
 const BodyDiv = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    width: 100%;
     flex-grow: 1;
 `;
 

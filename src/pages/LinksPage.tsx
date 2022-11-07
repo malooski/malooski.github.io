@@ -10,6 +10,8 @@ import tiktokLogo from "../assets/tiktok logo.png";
 import twitchLogo from "../assets/twitch logo.png";
 import twitterLogo from "../assets/twitter logo.png";
 import youtubeLogo from "../assets/youtube logo.png";
+import cohostLogo from "../assets/cohost logo.png";
+import tumblrLogo from "../assets/tumblr logo.png";
 
 import BrandedLink, { BrandedLinkProps } from "../components/BrandedLink";
 
@@ -65,6 +67,23 @@ const LINKS: LinkInfo[] = [
         href: "https://twitch.tv/malooski",
         img: twitchLogo,
     },
+
+    {
+        text: "Cohost",
+        bgColor: "#83254f",
+        color: "white",
+        img: cohostLogo,
+        href: "http://cohost.org/@malooski",
+    },
+
+    {
+        text: "Tumblr",
+        bgColor: "#2d4157",
+        color: "white",
+        img: tumblrLogo,
+        href: "http://tumblr.com/malooskivt",
+    },
+
     {
         text: "TikTok",
         bgColor: "#fe2c55",
