@@ -107,6 +107,13 @@ const LINKS: LinkInfo[] = [
         href: "https://malooski.gumroad.com/",
     },
     {
+        text: "Mastodon",
+        hoverText: "Follow me!",
+        bgColor: "#5c4fe5",
+        color: "#fff",
+        href: "https://mastodon.social/@malooski",
+    },
+    {
         text: "Throne",
         bgColor: "#e4e1f9",
         color: "black",
