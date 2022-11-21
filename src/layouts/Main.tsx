@@ -1,8 +1,12 @@
+import { useMemo } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { Navbar } from "../components/Navbar";
 import { MALOOSKI_LOGO_WEBM_URL } from "../constants";
 import { middleChildSelector } from "../util/css";
+import { isMobileBrowser } from "../util/dom";
+
+import malooskiLogo from "../assets/Logo.png";
 
 const BorderDiv = styled.div`
     position: fixed;
@@ -59,6 +63,11 @@ const LogoVideo = styled.video`
     pointer-events: none;
 `;
 
+const LogoImg = styled.img`
+    width: 100%;
+    margin: 1em 0;
+`;
+
 const BodyDiv = styled.div`
     display: flex;
     flex-direction: column;
@@ -92,10 +101,16 @@ const FooterDiv = styled.div`
 `;
 
 export default function MainLayout() {
+    const isMobile = useMemo(() => isMobileBrowser(), []);
+
     return (
         <BorderDiv>
             <InnerDiv>
-                <LogoVideo autoPlay muted loop src={MALOOSKI_LOGO_WEBM_URL} />
+                {isMobile ? (
+                    <LogoImg src={malooskiLogo} />
+                ) : (
+                    <LogoVideo autoPlay muted loop src={MALOOSKI_LOGO_WEBM_URL} />
+                )}
                 <Navbar />
 
                 <BodyDiv>

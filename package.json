@@ -68,5 +68,9 @@
         "browserslist": "^4.21.4",
         "prettier": "^2.7.1",
         "react-sizeme": "^3.0.2"
+    },
+    "volta": {
+        "node": "18.12.1",
+        "yarn": "3.3.0"
     }
 }

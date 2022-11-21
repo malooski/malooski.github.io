@@ -1,11 +1,5 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 
 export default function TimezonePage() {
-    const thisTime = useState();
-
-    return (
-        <Fragment>
-            <input></input>
-        </Fragment>
-    );
+    return <Fragment></Fragment>;
 }
