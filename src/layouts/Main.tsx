@@ -1,11 +1,8 @@
-import { lazy, Suspense, useState } from "react";
 import { Outlet } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Navbar } from "../components/Navbar";
 import { MALOOSKI_LOGO_WEBM_URL } from "../constants";
 import { middleChildSelector } from "../util/css";
-
-const DancingMaloo = lazy(() => import("../components/DancingMaloo"));
 
 const BorderDiv = styled.div`
     position: fixed;
@@ -94,36 +91,10 @@ const FooterDiv = styled.div`
     border-top: 2px solid #7365a6;
 `;
 
-const TwerkButtonInactiveCss = css`
-    padding: 0;
-    border: none;
-    background: none;
-`;
-
-const TwerkButtonActiveCss = css`
-    font-size: 24pt;
-    position: fixed;
-    bottom: 1em;
-    right: 1em;
-    z-index: 100;
-`;
-
-const TwerkButton = styled.button<{ active: boolean }>`
-    ${p => (p.active ? TwerkButtonActiveCss : TwerkButtonInactiveCss)}
-`;
-
 export default function MainLayout() {
-    const [isTwerk, setIsTwerk] = useState(false);
-
     return (
         <BorderDiv>
             <InnerDiv>
-                {isTwerk && (
-                    <Suspense fallback={null}>
-                        <DancingMaloo />
-                    </Suspense>
-                )}
-
                 <LogoVideo autoPlay muted loop src={MALOOSKI_LOGO_WEBM_URL} />
                 <Navbar />
 
@@ -136,15 +107,7 @@ export default function MainLayout() {
                     <div>
                         <span>&copy; 2022 Malooski</span>
                     </div>
-                    <div>
-                        <TwerkButton
-                            title="Click to see the aliens..."
-                            active={isTwerk}
-                            onClick={() => setIsTwerk(v => !v)}
-                        >
-                            🛸
-                        </TwerkButton>
-                    </div>
+                    <div>🛸</div>
                 </FooterDiv>
             </InnerDiv>
         </BorderDiv>

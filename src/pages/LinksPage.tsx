@@ -41,7 +41,23 @@ const LinksDiv = styled.div`
     }
 `;
 
-interface LinkInfo extends BrandedLinkProps {}
+enum LinkCategory {
+    STREAMING,
+    MICRO_BLOGGING,
+    LONG_FORM,
+    VIDEO,
+    SHOP
+}
+
+interface LinkInfo extends BrandedLinkProps {
+    img?: string;
+    href: string;
+    bgColor: string;
+    color?: string;
+    text: string;
+    hoverText?: string;
+    category?: LinkCategory
+}
 
 const LINKS: LinkInfo[] = [
     {
@@ -111,7 +127,7 @@ const LINKS: LinkInfo[] = [
         hoverText: "Follow me!",
         bgColor: "#5c4fe5",
         color: "#fff",
-        href: "https://mastodon.social/@malooski",
+        href: "https://vt.social/@malooski",
     },
     {
         text: "Throne",
@@ -171,6 +187,8 @@ const LINKS: LinkInfo[] = [
         href: "https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA",
     },
 ];
+
+
 
 export default function LinksPage() {
     return (
