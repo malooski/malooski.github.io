@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { Navbar } from "../components/Navbar";
 import { MALOOSKI_LOGO_WEBM_URL } from "../constants";
-import { middleChildSelector } from "../util/css";
+import { middleChildSelector, SMARTPHONE_SELECTOR } from "../util/css";
 import { isMobileBrowser } from "../util/dom";
 
 import malooskiLogo from "../assets/Logo.png";
@@ -39,7 +39,7 @@ const InnerDiv = styled.div`
     margin: 16px;
 
     width: 800px;
-    @media (max-width: 768px) {
+    ${SMARTPHONE_SELECTOR} {
         margin: 0px;
         width: 100%;
     }
