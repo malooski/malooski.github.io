@@ -11,6 +11,7 @@ import nicaMonamiCommUrl from "../assets/thumbnails/NicaMonami comm.jpg";
 import sandforteCommUrl from "../assets/thumbnails/sandforte.jpg";
 import luciousValentineCommUrl from "../assets/thumbnails/luscious comm.jpg";
 import vitaDivataCommUrl from "../assets/thumbnails/vitadivata comm.jpg";
+import tsulDesuCommUrl from "../assets/thumbnails/tsuldesu comm.jpg";
 
 export enum ArtworkType {
     COMMISSION,
@@ -38,7 +39,7 @@ export interface ArtworkInfo {
     author: ArtworkAuthor;
 }
 
-const ARTIST = {
+const ARTIST: Record<string, ArtworkAuthor> = {
     sandforte: {
         name: "Sandforte",
         url: "https://twitter.com/sandforte",
@@ -57,7 +58,11 @@ const ARTIST = {
     },
     trashpits: { name: "Trashpits", url: "https://twitter.com/trashpits" },
     ranvi: { name: "Ranvi", url: "https://twitter.com/OneLittleGnome" },
-} satisfies Record<string, ArtworkAuthor>;
+    tsulDesu: {
+        name: "Tsul Desu",
+        url: "https://twitter.com/TsulDesu",
+    },
+};
 
 const S3_ARTWORK_URL = "https://malooski-public.s3.us-east-2.amazonaws.com/artwork";
 
@@ -97,6 +102,15 @@ export const ARTWORKS: ArtworkInfo[] = [
         imgUrl: [`${S3_ARTWORK_URL}/luscious+comm.jpg`],
         workUrl: "https://twitter.com/malooski_vt/status/1569347212349521920",
         author: ARTIST.lucious,
+    },
+    {
+        id: "1564259247273172999",
+        title: "Stay still~",
+        type: ArtworkType.COMMISSION,
+        thumbnails: [{ url: tsulDesuCommUrl }],
+        imgUrl: [`${S3_ARTWORK_URL}/tsuldesu+comm.jpg`],
+        workUrl: "https://twitter.com/malooski_vt/status/1564259247273172999",
+        author: ARTIST.tsulDesu,
     },
     {
         id: "1555012934916624385",
