@@ -12,6 +12,7 @@ import sandforteCommUrl from "../assets/thumbnails/sandforte.jpg";
 import luciousValentineCommUrl from "../assets/thumbnails/luscious comm.jpg";
 import vitaDivataCommUrl from "../assets/thumbnails/vitadivata comm.jpg";
 import tsulDesuCommUrl from "../assets/thumbnails/tsuldesu comm.jpg";
+import furiwoCommUrl from "../assets/thumbnails/subfuriwo comm.jpg";
 
 export enum ArtworkType {
     COMMISSION,
@@ -62,6 +63,10 @@ const ARTIST: Record<string, ArtworkAuthor> = {
         name: "Tsul Desu",
         url: "https://twitter.com/TsulDesu",
     },
+    furiwo: {
+        name: "Furiwo",
+        url: "https://twitter.com/sub_furiwo",
+    },
 };
 
 const S3_ARTWORK_URL = "https://malooski-public.s3.us-east-2.amazonaws.com/artwork";
@@ -93,6 +98,15 @@ export const ARTWORKS: ArtworkInfo[] = [
         imgUrl: [`${S3_ARTWORK_URL}/nicamonami+comm.jpg`],
         workUrl: "https://twitter.com/malooski_vt/status/1563167713945866240",
         author: ARTIST.nicaMonami,
+    },
+    {
+        id: "1566458825703669761",
+        title: "With a furry friend",
+        type: ArtworkType.COMMISSION,
+        thumbnails: [{ url: furiwoCommUrl }],
+        imgUrl: [`${S3_ARTWORK_URL}/subfuriwo+comm.jpg`],
+        workUrl: "https://twitter.com/malooski_vt/status/1566458825703669761",
+        author: ARTIST.furiwo,
     },
     {
         id: "1569347212349521920",
