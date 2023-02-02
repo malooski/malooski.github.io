@@ -14,6 +14,7 @@ import vitaDivataCommUrl from "../assets/thumbnails/vitadivata comm.jpg";
 import tsulDesuCommUrl from "../assets/thumbnails/tsuldesu comm.jpg";
 import furiwoCommUrl from "../assets/thumbnails/subfuriwo comm.jpg";
 import spacetrashCommUrl from "../assets/thumbnails/spacetrash comm.jpg";
+import riszaperdhanaCommUrl from "../assets/thumbnails/riszaperdhana comm.jpg";
 
 export enum ArtworkType {
     COMMISSION,
@@ -72,6 +73,10 @@ const ARTIST: Record<string, ArtworkAuthor> = {
         name: "SpaceTrashVT",
         url: "https://twitter.com/SpaceTrashVT",
     },
+    riszaperdhana: {
+        name: "Riszaperdhana",
+        url: "https://www.fiverr.com/riszaperdhana",
+    },
 };
 
 const S3_ARTWORK_URL = "https://malooski-public.s3.us-east-2.amazonaws.com/artwork";
@@ -121,6 +126,15 @@ export const ARTWORKS: ArtworkInfo[] = [
         imgUrl: [`${S3_ARTWORK_URL}/subfuriwo+comm.jpg`],
         workUrl: "https://twitter.com/malooski_vt/status/1566458825703669761",
         author: ARTIST.furiwo,
+    },
+    {
+        id: "1558086453820801031",
+        title: "With great power-",
+        type: ArtworkType.COMMISSION,
+        thumbnails: [{ url: riszaperdhanaCommUrl }],
+        imgUrl: [`${S3_ARTWORK_URL}/riszaperdhana+comm.jpg`],
+        workUrl: "https://twitter.com/malooski_vt/status/1558086453820801031",
+        author: ARTIST.riszaperdhana,
     },
     {
         id: "1569347212349521920",
