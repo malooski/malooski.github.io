@@ -13,6 +13,7 @@ import luciousValentineCommUrl from "../assets/thumbnails/luscious comm.jpg";
 import vitaDivataCommUrl from "../assets/thumbnails/vitadivata comm.jpg";
 import tsulDesuCommUrl from "../assets/thumbnails/tsuldesu comm.jpg";
 import furiwoCommUrl from "../assets/thumbnails/subfuriwo comm.jpg";
+import spacetrashCommUrl from "../assets/thumbnails/spacetrash comm.jpg";
 
 export enum ArtworkType {
     COMMISSION,
@@ -67,6 +68,10 @@ const ARTIST: Record<string, ArtworkAuthor> = {
         name: "Furiwo",
         url: "https://twitter.com/sub_furiwo",
     },
+    spacetrash: {
+        name: "SpaceTrashVT",
+        url: "https://twitter.com/SpaceTrashVT",
+    },
 };
 
 const S3_ARTWORK_URL = "https://malooski-public.s3.us-east-2.amazonaws.com/artwork";
@@ -89,6 +94,15 @@ export const ARTWORKS: ArtworkInfo[] = [
         imgUrl: [`${S3_ARTWORK_URL}/vitadivata+comm.jpg`],
         workUrl: "https://twitter.com/malooski_vt/status/1615051232468471838",
         author: ARTIST.vitaDivata,
+    },
+    {
+        id: "1582867998125084672",
+        title: "Don't lose your head",
+        type: ArtworkType.COMMISSION,
+        thumbnails: [{ url: spacetrashCommUrl }],
+        imgUrl: [`${S3_ARTWORK_URL}/spacetrash+comm.jpg`],
+        workUrl: "https://twitter.com/malooski_vt/status/1582867998125084672",
+        author: ARTIST.spacetrash,
     },
     {
         id: "1563167713945866240",
