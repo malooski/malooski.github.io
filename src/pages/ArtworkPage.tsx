@@ -6,7 +6,6 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ThumbnailCycle from "../components/ThumbnailCycle";
 import { ArtworkInfo, ARTWORKS, ArtworkType } from "../lib/artwork";
-import { isMobileBrowser } from "../util/dom";
 
 const ArtworksDiv = styled.div`
     display: flex;
@@ -48,15 +47,15 @@ const ThumbnailDiv = styled.div<{ hovering: boolean }>`
     overflow: hidden;
 `;
 
-const HeaderContainer = styled.div<{ hovering: boolean }>`
+const HeaderContainer = styled.div`
     background-color: rgba(0, 0, 0, 0.8);
 
     width: 100%;
 
     position: absolute;
-    top: ${p => (p.hovering ? "0" : "-100%")};
 
     transition: top 0.2s ease-in-out;
+    top: 0;
 `;
 
 const HeaderContents = styled.div`
@@ -67,7 +66,7 @@ const HeaderContents = styled.div`
     justify-content: space-between;
 `;
 
-const FooterInfoContainer = styled.div<{ hovering: boolean }>`
+const FooterInfoContainer = styled.div`
     display: flex;
 
     background-color: rgba(0, 0, 0, 0.8);
@@ -75,8 +74,8 @@ const FooterInfoContainer = styled.div<{ hovering: boolean }>`
     width: 100%;
 
     position: absolute;
-    bottom: ${p => (p.hovering ? "0" : "-100%")};
     transition: bottom 0.2s ease-in-out;
+    bottom: 0;
 `;
 
 const TitleDiv = styled.div`
@@ -90,7 +89,6 @@ function ArtworkEntry(props: ArtworkEntryProps) {
     const { artwork } = props;
 
     const [mouseHovering, setMouseHovering] = useState(false);
-    const showDetails = mouseHovering || isMobileBrowser();
 
     const typeText = artwork.type === ArtworkType.COMMISSION ? "Commission" : "Fanart";
 
@@ -117,22 +115,26 @@ function ArtworkEntry(props: ArtworkEntryProps) {
                 onMouseLeave={onThumbnailLeave}
                 onClick={onThumbnailClick}
             >
-                <ThumbnailCycle urls={artwork.thumbUrls} intervalMs={5000} transitionMs={2000} />
-                <HeaderContainer hovering={showDetails}>
+                <ThumbnailCycle
+                    thumbnails={artwork.thumbnails}
+                    intervalMs={5000}
+                    transitionMs={2000}
+                />
+                <HeaderContainer>
                     <HeaderContents>
                         <TitleDiv>{artwork.title}</TitleDiv>
                         <div>
                             <a href={artwork.workUrl} rel="noreferrer" target="_blank">
-                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                                Source <FontAwesomeIcon size="xs" icon={faArrowUpRightFromSquare} />
                             </a>
                         </div>
                     </HeaderContents>
                 </HeaderContainer>
-                <FooterInfoContainer hovering={showDetails}>
+                <FooterInfoContainer>
                     <FooterInfoContents>
                         {typeText} by{" "}
-                        <a href={artwork.authorUrl} rel="noreferrer" target="_blank">
-                            {artwork.authorName}{" "}
+                        <a href={artwork.author.url} rel="noreferrer" target="_blank">
+                            {artwork.author.name}{" "}
                             <FontAwesomeIcon size="xs" icon={faArrowUpRightFromSquare} />
                         </a>
                     </FooterInfoContents>

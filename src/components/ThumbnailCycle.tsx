@@ -1,10 +1,11 @@
 import { memo, useState } from "react";
 import styled from "styled-components";
+import { ArtworkThumbnail } from "../lib/artwork";
 import useInterval from "../util/hooks/use_interval";
 import usePreloadImages from "../util/hooks/use_preload_images";
 
 interface ThumbnailCycleImgProps {
-    urls: string[];
+    thumbnails: ArtworkThumbnail[];
     transitionMs: number;
     intervalMs: number;
 }
@@ -37,7 +38,8 @@ const NewThumbnailDiv = styled(ThumbnailDiv)<{ reveal: boolean; transitionMs: nu
 `;
 
 export default memo((props: ThumbnailCycleImgProps) => {
-    const { urls, intervalMs, transitionMs } = props;
+    const { thumbnails, intervalMs, transitionMs } = props;
+    const urls = thumbnails.map(t => t.url);
     usePreloadImages(urls);
 
     const [currIdx] = useState(0);

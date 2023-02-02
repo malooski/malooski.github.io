@@ -7,11 +7,11 @@ import AboutPage from "./pages/AboutPage";
 import ArtworkPage from "./pages/ArtworkPage";
 import CommsPage from "./pages/CommsPage";
 import ExpandedArtworkPage from "./pages/ExpandedArtworkPage";
-import LinksPage from "./pages/LinksPage";
+import LinksPage from "./pages/LinksPage/index";
 import RefPage from "./pages/RefPage";
 import TimezonePage from "./pages/TimezonePage";
 
-function AppRoutes() {
+export default function AppRoutes() {
     return (
         <Router>
             <Routes>
@@ -36,5 +36,3 @@ function AppRoutes() {
         </Router>
     );
 }
-
-export default AppRoutes;

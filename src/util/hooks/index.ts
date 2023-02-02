@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { clampToCycle } from "..";
+import { clampToCycle } from "../index";
 import { preloadImage } from "../dom";
 import { useConstRef } from "./use_const_ref";
 

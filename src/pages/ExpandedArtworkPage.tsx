@@ -4,7 +4,7 @@ import { memo, useMemo } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ArtworkInfo, ARTWORKS, ArtworkType } from "../lib/artwork";
-import { clampToCycle, parseIntOrNull } from "../util";
+import { clampToCycle, parseIntOrNull } from "../util/index";
 import { useImageLoading } from "../util/hooks/use_image_loading";
 
 const RootDiv = styled.div`
@@ -183,8 +183,8 @@ const ExpandedArtworkFoundPage = memo((props: ExpandedArtworkFoundPageProps) => 
                 <InfoPanelGrid>
                     <div>Artist</div>
                     <div>
-                        <a href={artwork.authorUrl} rel="noreferrer" target="_blank">
-                            {artwork.authorName}
+                        <a href={artwork.author.url} rel="noreferrer" target="_blank">
+                            {artwork.author.name}
                         </a>
                     </div>
                     <div>Type</div>
