@@ -38,7 +38,7 @@ export interface ArtworkInfo {
     author: ArtworkAuthor;
 }
 
-const ARTIST: Record<string, ArtworkAuthor> = {
+const ARTIST = {
     sandforte: {
         name: "Sandforte",
         url: "https://twitter.com/sandforte",
@@ -56,7 +56,8 @@ const ARTIST: Record<string, ArtworkAuthor> = {
         url: "https://www.fiverr.com/nekovoid",
     },
     trashpits: { name: "Trashpits", url: "https://twitter.com/trashpits" },
-};
+    ranvi: { name: "Ranvi", url: "https://twitter.com/OneLittleGnome" },
+} satisfies Record<string, ArtworkAuthor>;
 
 const S3_ARTWORK_URL = "https://malooski-public.s3.us-east-2.amazonaws.com/artwork";
 
@@ -143,7 +144,7 @@ export const ARTWORKS: ArtworkInfo[] = [
         imgUrl: [],
         workUrl: "https://twitter.com/malooski_vt/status/1541927930246447104",
         thumbnails: [{ url: ranviCommClosedUrl }, { url: ranviCommOpenUrl }],
-        author: { name: "Ranvi", url: "https://twitter.com/OneLittleGnome" },
+        author: ARTIST.ranvi,
         type: ArtworkType.COMMISSION,
     },
     {
