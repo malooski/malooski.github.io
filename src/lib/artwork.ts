@@ -58,7 +58,7 @@ const ARTIST: Record<string, ArtworkAuthor> = {
     trashpits: { name: "Trashpits", url: "https://twitter.com/trashpits" },
 };
 
-const S3_ARTWORK_URL = "https://malooski-public.s3.us-east-2.amazonaws.com/artwork/";
+const S3_ARTWORK_URL = "https://malooski-public.s3.us-east-2.amazonaws.com/artwork";
 
 export const ARTWORKS: ArtworkInfo[] = [
     {
