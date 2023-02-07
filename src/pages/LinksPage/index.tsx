@@ -166,6 +166,7 @@ export default function LinksPage() {
                     color="white"
                     img={discordLogo}
                     href="https://discord.com/invite/ahmyDJ5Pfr"
+                    handle="malooski#0001"
                 />
                 <BrandedLink
                     name="Gumroad"
