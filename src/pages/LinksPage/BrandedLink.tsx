@@ -1,4 +1,6 @@
+import { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
+import { THEME } from "../../constants";
 import { cssUrlify } from "../../util/css";
 
 export interface BrandedLinkProps {
@@ -9,6 +11,8 @@ export interface BrandedLinkProps {
     color?: string;
     name?: string;
     handle?: string;
+
+    copyText?: string;
 }
 
 const BrandedLinkAnchor = styled.a<{ color: string; bgColor: string }>`
@@ -51,26 +55,46 @@ const NameSpan = styled.div`
     font-weight: bold;
 `;
 
+const HandleSpan = styled.span`
+    font-family: ${THEME.fonts.monospace};
+`;
+
 export default function BrandedLink(props: BrandedLinkProps): JSX.Element {
     const { name, handle, color = "white", href, img, bgColor, bgImg } = props;
+
+    const [wasCopied, setCopied] = useState(false);
+    const clearCopyRef = useRef<any>();
+
+    const onClickCopy = useCallback(() => {
+        if (props.copyText == null) return;
+        navigator.clipboard.writeText(props.copyText);
+
+        clearTimeout(clearCopyRef.current);
+        setCopied(true);
+        clearCopyRef.current = setTimeout(() => setCopied(false), 3 * 1000);
+    }, [props.copyText]);
+
+    const isCopyOnly = props.copyText != null && href == null;
 
     return (
         <BrandedLinkAnchor
             color={color}
-            href={href}
+            href={isCopyOnly ? "#" : href}
             bgColor={bgColor}
             style={{
                 backgroundImage: cssUrlify(bgImg),
             }}
-            target="_blank"
+            target={isCopyOnly ? undefined : "_blank"}
             rel="noreferrer"
+            onClick={onClickCopy}
+            title={isCopyOnly ? "Click to copy!" : undefined}
         >
             <CenterDiv>
                 {img && <MyImg src={img} />}
                 <NameSpan>{name}</NameSpan>
             </CenterDiv>
             <CenterDiv>
-                <span>{handle}</span>
+                <HandleSpan>{wasCopied ? "Copied!" : handle}</HandleSpan>
             </CenterDiv>
         </BrandedLinkAnchor>
     );

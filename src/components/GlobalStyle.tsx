@@ -4,6 +4,7 @@ import { THEME } from "../constants";
 export default createGlobalStyle`
     html, body {
         font-family: 'Exo 2', sans-serif;
+
         color: ${THEME.colors.white};
     }
 

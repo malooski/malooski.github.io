@@ -15,7 +15,10 @@ export const THEME = {
         darkGold: "#ac9366",
         gold: "#d0b389",
     },
-};
+    fonts: {
+        monospace: "'Source Code Pro', monospace",
+    },
+} as const;
 
 export const MALOOSKI_LOGO_WEBM_URL =
     "https://malooski-public.s3.us-east-2.amazonaws.com/Logo.webm";
