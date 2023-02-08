@@ -15,6 +15,7 @@ import tumblrLogo from "../../assets/tumblr logo.png";
 import twitchLogo from "../../assets/twitch logo.png";
 import twitterLogo from "../../assets/twitter logo.png";
 import youtubeLogo from "../../assets/youtube logo.png";
+import vrchatLogo from "../../assets/vrchat logo.png";
 
 import BrandedLink from "./BrandedLink";
 import BrandedLinkGroup from "./BrandedLinkGroup";
@@ -159,7 +160,7 @@ export default function LinksPage() {
                 />
             </BrandedLinkGroup>
 
-            <BrandedLinkGroup name="❓ Misc">
+            <BrandedLinkGroup name="🕹 Gaming">
                 <BrandedLink
                     name="Discord"
                     bgColor="#36393f"
@@ -175,6 +176,18 @@ export default function LinksPage() {
                     img={discordLogo}
                     href="https://discord.com/invite/ahmyDJ5Pfr"
                 />
+
+                <BrandedLink
+                    name="VRChat"
+                    bgColor="#36393f"
+                    color="white"
+                    img={vrchatLogo}
+                    handle="malooski"
+                    href="https://vrchat.com/home/user/usr_49c81fd0-97ed-4865-a498-8be4c0b74f9f"
+                />
+            </BrandedLinkGroup>
+
+            <BrandedLinkGroup name="❓ Misc">
                 <BrandedLink
                     name="Gumroad"
                     bgColor="#f4f4f0"

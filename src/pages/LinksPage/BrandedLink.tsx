@@ -57,6 +57,7 @@ const NameSpan = styled.div`
 
 const HandleSpan = styled.span`
     font-family: ${THEME.fonts.monospace};
+    font-size: 0.8em;
 `;
 
 export default function BrandedLink(props: BrandedLinkProps): JSX.Element {
