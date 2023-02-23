@@ -1,5 +1,5 @@
 import { Link, LinkProps, useMatch, useResolvedPath } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { THEME } from "../constants";
 
 const NavDiv = styled.div`
@@ -7,19 +7,29 @@ const NavDiv = styled.div`
     margin-bottom: 1em;
 `;
 
-const MyNavLinkStyle = styled(Link)<{ active: boolean }>`
+const LINK_CSS = css`
     color: white;
     margin: 8px 16px;
     text-decoration: none;
     font-weight: bold;
 
-    border-bottom: ${props => (props.active ? "2px solid white" : "2px solid transparent")};
+    border-bottom: "2px solid transparent";
 
     transition: border-bottom 0.2s ease-in-out;
 
     :hover {
         color: ${THEME.colors.lightPink};
     }
+`;
+
+const MyNavLinkStyle = styled(Link)<{ active: boolean }>`
+    ${LINK_CSS}
+
+    border-bottom: ${props => (props.active ? "2px solid white" : "2px solid transparent")};
+`;
+
+const MyLink = styled.a`
+    ${LINK_CSS}
 `;
 
 function CustomLink(props: LinkProps) {
@@ -29,13 +39,17 @@ function CustomLink(props: LinkProps) {
     return <MyNavLinkStyle active={!!match} {...props} />;
 }
 
+const REFERENCE_URL = "https://malooski.notion.site/Reference-06d67a7b38df4a4a9bd3787410ad97b0";
+
 export function Navbar() {
     return (
         <NavDiv>
             <CustomLink to="/">Home</CustomLink>
             <CustomLink to="/about">About</CustomLink>
             <CustomLink to="/artwork">Artwork</CustomLink>
-            <CustomLink to="/ref">Ref</CustomLink>
+            <MyLink target="_blank" rel="norefferer" href={REFERENCE_URL}>
+                Reference
+            </MyLink>
         </NavDiv>
     );
 }
