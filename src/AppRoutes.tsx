@@ -1,15 +1,13 @@
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
-import MainLayout from "./layouts/Main";
 import FullWidthLayout from "./layouts/FullWidth";
+import MainLayout from "./layouts/Main";
 
 import AboutPage from "./pages/AboutPage";
 import ArtworkPage from "./pages/ArtworkPage";
-import CommsPage from "./pages/CommsPage";
 import ExpandedArtworkPage from "./pages/ExpandedArtworkPage";
 import LinksPage from "./pages/LinksPage/index";
 import RefPage from "./pages/RefPage";
-import TimezonePage from "./pages/TimezonePage";
 
 export default function AppRoutes() {
     return (
@@ -19,12 +17,6 @@ export default function AppRoutes() {
                     <Route index element={<LinksPage />} />
                     <Route path="about" element={<AboutPage />} />
                     <Route path="artwork" element={<ArtworkPage />} />
-                    <Route path="comms" element={<CommsPage />} />
-                    <Route path="timezone" element={<CommsPage />} />
-                </Route>
-
-                <Route path="/tools" element={<MainLayout />}>
-                    <Route path="timezone" element={<TimezonePage />} />
                 </Route>
 
                 <Route path="/" element={<FullWidthLayout />}>
