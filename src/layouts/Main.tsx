@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { Navbar } from "../components/Navbar";
@@ -7,6 +7,7 @@ import { middleChildSelector, SMARTPHONE_SELECTOR } from "../util/css";
 import { isMobileBrowser } from "../util/dom";
 
 import malooskiLogo from "../assets/Logo.png";
+import FloatingMaloo from "../components/FloatingMaloo";
 
 const BorderDiv = styled.div`
     position: fixed;
@@ -104,27 +105,30 @@ export default function MainLayout() {
     const isMobile = useMemo(() => isMobileBrowser(), []);
 
     return (
-        <BorderDiv>
-            <InnerDiv>
-                {isMobile ? (
-                    <LogoImg src={malooskiLogo} />
-                ) : (
-                    <LogoVideo autoPlay muted loop src={MALOOSKI_LOGO_WEBM_URL} />
-                )}
-                <Navbar />
+        <Fragment>
+            <FloatingMaloo />
+            <BorderDiv>
+                <InnerDiv>
+                    {isMobile ? (
+                        <LogoImg src={malooskiLogo} />
+                    ) : (
+                        <LogoVideo autoPlay muted loop src={MALOOSKI_LOGO_WEBM_URL} />
+                    )}
+                    <Navbar />
 
-                <BodyDiv>
-                    <Outlet />
-                </BodyDiv>
+                    <BodyDiv>
+                        <Outlet />
+                    </BodyDiv>
 
-                <FooterDiv>
-                    <div></div>
-                    <div>
-                        <span>&copy; 2022 Malooski</span>
-                    </div>
-                    <div>🛸</div>
-                </FooterDiv>
-            </InnerDiv>
-        </BorderDiv>
+                    <FooterDiv>
+                        <div></div>
+                        <div>
+                            <span>&copy; 2022 Malooski</span>
+                        </div>
+                        <div>🛸</div>
+                    </FooterDiv>
+                </InnerDiv>
+            </BorderDiv>
+        </Fragment>
     );
 }

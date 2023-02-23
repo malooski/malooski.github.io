@@ -22,3 +22,6 @@ export const THEME = {
 
 export const MALOOSKI_LOGO_WEBM_URL =
     "https://malooski-public.s3.us-east-2.amazonaws.com/Logo.webm";
+
+export const MALOO_PEEKING_WEBM_URL =
+    "https://malooski-public.s3.us-east-2.amazonaws.com/Maloo+Greeting.webm";

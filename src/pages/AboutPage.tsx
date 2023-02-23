@@ -12,6 +12,18 @@ interface CreditEntry {
 
 const CREDITS: CreditEntry[] = [
     {
+        workName: "Live2D Model Art",
+        workUrl: "https://twitter.com/stupah/status/1627110601674866689",
+        authorName: "cottonwings",
+        authorUrl: "https://twitter.com/cottonwings",
+    },
+    {
+        workName: "Live2D Rigging",
+        workUrl: "https://twitter.com/stupah/status/1627110601674866689",
+        authorName: "stupah",
+        authorUrl: "https://twitter.com/stupah",
+    },
+    {
         workName: "Reference",
         workUrl: "https://twitter.com/malooski_vt/status/1541552859262730241",
         authorName: "enricaheid",
