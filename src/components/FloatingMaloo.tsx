@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { MALOO_PEEKING_WEBM_URL } from "../constants";
+import { isMobileBrowser } from "../util/dom";
 
 const MalooVideo = styled.video`
     position: absolute;
@@ -12,7 +13,7 @@ const MalooVideo = styled.video`
 `;
 
 export default function FloatingMaloo() {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(!isMobileBrowser());
 
     if (!visible) {
         return null;
