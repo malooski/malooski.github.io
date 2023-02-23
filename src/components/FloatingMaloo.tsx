@@ -6,6 +6,7 @@ const MalooVideo = styled.video`
     bottom: 0;
     right: 1em;
     width: 25%;
+    max-width: 480px;
 
     z-index: 1000;
 `;
