@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { Navbar } from "../components/Navbar";
@@ -8,6 +8,7 @@ import { isMobileBrowser } from "../util/dom";
 
 import malooskiLogo from "../assets/Logo.png";
 import FloatingMaloo from "../components/FloatingMaloo";
+import InvisibleButton from "../components/core/InvisibleButton";
 
 const BorderDiv = styled.div`
     position: fixed;
@@ -103,10 +104,14 @@ const FooterDiv = styled.div`
 
 export default function MainLayout() {
     const isMobile = useMemo(() => isMobileBrowser(), []);
+    const [isMalooVisible, setMalooVisible] = useState(true);
 
     return (
         <Fragment>
-            <FloatingMaloo />
+            <FloatingMaloo
+                visible={isMalooVisible && !isMobile}
+                onClick={() => setMalooVisible(false)}
+            />
             <BorderDiv>
                 <InnerDiv>
                     {isMobile ? (
@@ -125,7 +130,7 @@ export default function MainLayout() {
                         <div>
                             <span>&copy; 2022 Malooski</span>
                         </div>
-                        <div>🛸</div>
+                        <InvisibleButton onClick={() => setMalooVisible(true)}>🛸</InvisibleButton>
                     </FooterDiv>
                 </InnerDiv>
             </BorderDiv>
