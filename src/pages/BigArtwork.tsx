@@ -2,19 +2,18 @@ import {
     faArrowLeft,
     faArrowRight,
     faChevronLeft,
-    faHome,
     faUndo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo, useMemo } from "react";
+import classNames from "classnames";
+import { useMemo } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { ARTWORKS, ArtworkInfo, ArtworkType } from "../lib/artwork";
 import { clampToCycle, parseIntOrNull } from "../util/index";
-import classNames from "classnames";
 
-import * as classes from "./BigArtwork.module.scss";
 import { cssUrlify } from "../util/css";
 import { useImageLoadingState, useOnArrowKeydown, useOnEscKeydown } from "../util/react";
+import * as classes from "./BigArtwork.module.scss";
 
 export function Component() {
     const params = useParams();

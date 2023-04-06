@@ -21,179 +21,181 @@ import vrchatLogo from "./../assets/brand logos/vrchat logo.png";
 
 export function Component() {
     return (
-        <div className={classes.root}>
-            <span>Hot Alien Hackers in YOUR area!</span>
-            <div className={classes.linkGroups}>
-                <BrandedLinkGroup name="🔴 Streaming">
-                    <BrandedLink
-                        bgColor="#6441a5"
-                        color="#fff"
-                        href="https://twitch.tv/malooski"
-                        img={twitchLogo}
-                        handle="malooski"
-                    />
-                    <BrandedLink
-                        name="Schedule"
-                        bgColor="#d77ed7"
-                        color="#fff"
-                        href="https://sched.maloo.ski"
-                    />
-                </BrandedLinkGroup>
+        <>
+            <div className={classes.root}>
+                <span>Hot Alien Hackers in YOUR area!</span>
+                <div className={classes.linkGroups}>
+                    <BrandedLinkGroup name="🔴 Streaming">
+                        <BrandedLink
+                            bgColor="#6441a5"
+                            color="#fff"
+                            href="https://twitch.tv/malooski"
+                            img={twitchLogo}
+                            handle="malooski"
+                        />
+                        <BrandedLink
+                            name="Schedule"
+                            bgColor="#d77ed7"
+                            color="#fff"
+                            href="https://sched.maloo.ski"
+                        />
+                    </BrandedLinkGroup>
 
-                <BrandedLinkGroup name="🐦 Micro-Blogs">
-                    <BrandedLink
-                        name="Twitter"
-                        bgColor="#1da1f2"
-                        color="#fff"
-                        href="https://twitter.com/malooski_vt"
-                        img={twitterLogo}
-                        handle="malooski_vt"
-                    />
-                    <BrandedLink
-                        name="Twitter 🔞"
-                        bgColor="#1da1f2"
-                        color="#fff"
-                        href="https://twitter.com/malewdski"
-                        img={twitterLogo}
-                        handle="malewdski"
-                    />
+                    <BrandedLinkGroup name="🐦 Micro-Blogs">
+                        <BrandedLink
+                            name="Twitter"
+                            bgColor="#1da1f2"
+                            color="#fff"
+                            href="https://twitter.com/malooski_vt"
+                            img={twitterLogo}
+                            handle="malooski_vt"
+                        />
+                        <BrandedLink
+                            name="Twitter 🔞"
+                            bgColor="#1da1f2"
+                            color="#fff"
+                            href="https://twitter.com/malewdski"
+                            img={twitterLogo}
+                            handle="malewdski"
+                        />
 
-                    <BrandedLink
-                        name="Mastodon"
-                        bgColor="#5c4fe5"
-                        color="#fff"
-                        href="https://vt.social/@malooski"
-                        img={mastodonLogo}
-                        handle="@malooski@vt.social"
-                    />
-                </BrandedLinkGroup>
+                        <BrandedLink
+                            name="Mastodon"
+                            bgColor="#5c4fe5"
+                            color="#fff"
+                            href="https://vt.social/@malooski"
+                            img={mastodonLogo}
+                            handle="@malooski@vt.social"
+                        />
+                    </BrandedLinkGroup>
 
-                <BrandedLinkGroup name="🎥 Video">
-                    <BrandedLink
-                        bgColor="#fe2c55"
-                        color="white"
-                        img={tiktokLogo}
-                        href="http://tiktok.com/@malooski"
-                        handle="malooski"
-                    />
-                    <BrandedLink
-                        name="YouTube"
-                        bgColor="#ff0000"
-                        color="white"
-                        img={youtubeLogo}
-                        href="https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg"
-                    />
-                    <BrandedLink
-                        name="Highlights"
-                        bgColor="#ff0000"
-                        color="white"
-                        img={youtubeLogo}
-                        href="https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ"
-                    />
-                    <BrandedLink
-                        name="Archive"
-                        bgColor="#ff0000"
-                        color="white"
-                        img={youtubeLogo}
-                        href="https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA"
-                    />
-                </BrandedLinkGroup>
+                    <BrandedLinkGroup name="🎥 Video">
+                        <BrandedLink
+                            bgColor="#fe2c55"
+                            color="white"
+                            img={tiktokLogo}
+                            href="http://tiktok.com/@malooski"
+                            handle="malooski"
+                        />
+                        <BrandedLink
+                            name="YouTube"
+                            bgColor="#ff0000"
+                            color="white"
+                            img={youtubeLogo}
+                            href="https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg"
+                        />
+                        <BrandedLink
+                            name="Highlights"
+                            bgColor="#ff0000"
+                            color="white"
+                            img={youtubeLogo}
+                            href="https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ"
+                        />
+                        <BrandedLink
+                            name="Archive"
+                            bgColor="#ff0000"
+                            color="white"
+                            img={youtubeLogo}
+                            href="https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA"
+                        />
+                    </BrandedLinkGroup>
 
-                <BrandedLinkGroup name="📚 Blogs">
-                    <BrandedLink
-                        name="Cohost"
-                        bgColor="#83254f"
-                        color="white"
-                        img={cohostLogo}
-                        href="http://cohost.org/@malooski"
-                        handle="malooski"
-                    />
+                    <BrandedLinkGroup name="📚 Blogs">
+                        <BrandedLink
+                            name="Cohost"
+                            bgColor="#83254f"
+                            color="white"
+                            img={cohostLogo}
+                            href="http://cohost.org/@malooski"
+                            handle="malooski"
+                        />
 
-                    <BrandedLink
-                        name="Tumblr"
-                        bgColor="#2d4157"
-                        color="white"
-                        img={tumblrLogo}
-                        href="http://tumblr.com/malooskivt"
-                        handle="malooskivt"
-                    />
-                </BrandedLinkGroup>
+                        <BrandedLink
+                            name="Tumblr"
+                            bgColor="#2d4157"
+                            color="white"
+                            img={tumblrLogo}
+                            href="http://tumblr.com/malooskivt"
+                            handle="malooskivt"
+                        />
+                    </BrandedLinkGroup>
 
-                <BrandedLinkGroup name="💲 Donations">
-                    <BrandedLink
-                        name="Ko-Fi"
-                        bgColor="#ffffff"
-                        color="black"
-                        img={kofiLogo}
-                        href="https://ko-fi.com/malooski"
-                        handle="malooski"
-                    />
-                    <BrandedLink
-                        name="StreamElements Tips"
-                        bgColor="#1c233d"
-                        color="white"
-                        img={streamelementsLogo}
-                        href="https://streamelements.com/malooski/tip"
-                    />
+                    <BrandedLinkGroup name="💲 Donations">
+                        <BrandedLink
+                            name="Ko-Fi"
+                            bgColor="#ffffff"
+                            color="black"
+                            img={kofiLogo}
+                            href="https://ko-fi.com/malooski"
+                            handle="malooski"
+                        />
+                        <BrandedLink
+                            name="StreamElements Tips"
+                            bgColor="#1c233d"
+                            color="white"
+                            img={streamelementsLogo}
+                            href="https://streamelements.com/malooski/tip"
+                        />
 
-                    <BrandedLink
-                        name="Throne"
-                        bgColor="#e4e1f9"
-                        color="black"
-                        img={throneLogo}
-                        href="https://thrn.co/u/malooski"
-                        handle="malooski"
-                    />
-                </BrandedLinkGroup>
+                        <BrandedLink
+                            name="Throne"
+                            bgColor="#e4e1f9"
+                            color="black"
+                            img={throneLogo}
+                            href="https://thrn.co/u/malooski"
+                            handle="malooski"
+                        />
+                    </BrandedLinkGroup>
 
-                <BrandedLinkGroup name="🕹 Gaming">
-                    <BrandedLink
-                        name="Discord"
-                        bgColor="#36393f"
-                        color="white"
-                        img={discordLogo}
-                        handle="malooski#0001"
-                        copyText="malooski#0001"
-                    />
-                    <BrandedLink
-                        name="Discord Server"
-                        bgColor="#36393f"
-                        color="white"
-                        img={discordLogo}
-                        href="https://discord.com/invite/ahmyDJ5Pfr"
-                    />
+                    <BrandedLinkGroup name="🕹 Gaming">
+                        <BrandedLink
+                            name="Discord"
+                            bgColor="#36393f"
+                            color="white"
+                            img={discordLogo}
+                            handle="malooski#0001"
+                            copyText="malooski#0001"
+                        />
+                        <BrandedLink
+                            name="Discord Server"
+                            bgColor="#36393f"
+                            color="white"
+                            img={discordLogo}
+                            href="https://discord.com/invite/ahmyDJ5Pfr"
+                        />
 
-                    <BrandedLink
-                        name="VRChat"
-                        bgColor="#36393f"
-                        color="white"
-                        img={vrchatLogo}
-                        handle="malooski"
-                        href="https://vrchat.com/home/user/usr_49c81fd0-97ed-4865-a498-8be4c0b74f9f"
-                    />
-                </BrandedLinkGroup>
+                        <BrandedLink
+                            name="VRChat"
+                            bgColor="#36393f"
+                            color="white"
+                            img={vrchatLogo}
+                            handle="malooski"
+                            href="https://vrchat.com/home/user/usr_49c81fd0-97ed-4865-a498-8be4c0b74f9f"
+                        />
+                    </BrandedLinkGroup>
 
-                <BrandedLinkGroup name="❓ Misc">
-                    <BrandedLink
-                        name="Gumroad"
-                        bgColor="#f4f4f0"
-                        color="black"
-                        img={gumroadLogo}
-                        href="https://malooski.gumroad.com/"
-                        handle="malooski"
-                    />
+                    <BrandedLinkGroup name="❓ Misc">
+                        <BrandedLink
+                            name="Gumroad"
+                            bgColor="#f4f4f0"
+                            color="black"
+                            img={gumroadLogo}
+                            href="https://malooski.gumroad.com/"
+                            handle="malooski"
+                        />
 
-                    <BrandedLink
-                        name="Instagram"
-                        bgColor="#fafafa"
-                        color="black"
-                        img={instagramLogo}
-                        href="https://www.instagram.com/malooski_vt/"
-                        handle="malooski_vt"
-                    />
-                </BrandedLinkGroup>
+                        <BrandedLink
+                            name="Instagram"
+                            bgColor="#fafafa"
+                            color="black"
+                            img={instagramLogo}
+                            href="https://www.instagram.com/malooski_vt/"
+                            handle="malooski_vt"
+                        />
+                    </BrandedLinkGroup>
+                </div>
             </div>
             <FloatingMaloo />
-        </div>
+        </>
     );
 }
