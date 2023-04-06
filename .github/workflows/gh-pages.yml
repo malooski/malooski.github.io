@@ -19,7 +19,7 @@ jobs:
               run: yarn
 
             - name: Build
-              run: yarn build
+              run: yarn build-prod
               env:
                   PUBLIC_URL: https://maloo.ski/
 
