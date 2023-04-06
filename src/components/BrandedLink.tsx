@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
-import { THEME } from "../../constants";
-import { cssUrlify } from "../../util/css";
+import { THEME } from "../constants";
+import { cssUrlify } from "../util/css";
 
 export interface BrandedLinkProps {
     img?: string;

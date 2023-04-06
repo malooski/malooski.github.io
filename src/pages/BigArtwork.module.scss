@@ -1,0 +1,53 @@
+.root {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+
+    align-items: stretch;
+}
+
+.imgContainer {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; 
+
+    pointer-events: none; 
+    user-select: none; 
+
+    filter: blur(0px);
+    transition: filter 0.5s ease-in-out;
+
+    &.loading {
+        filter: blur(8px);
+    }
+    
+}
+
+
+.infoBar, .controlsBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 1em;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+}
+
+.pageButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}

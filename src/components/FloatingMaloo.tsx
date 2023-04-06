@@ -1,27 +1,15 @@
-import styled from "styled-components";
+import { useMemo } from "react";
 import { MALOO_PEEKING_WEBM_URL } from "../constants";
+import { isMobileBrowser } from "../util/dom";
 
-const MalooVideo = styled.video`
-    position: absolute;
-    bottom: 0;
-    right: 1em;
-    width: 25%;
-    max-width: 480px;
+import * as classes from "./FloatingMaloo.module.scss";
 
-    z-index: 1000;
-`;
+export default function FloatingMaloo() {
+    const isMobile = useMemo(() => isMobileBrowser(), []);
 
-export interface FloatingMalooProps {
-    visible: boolean;
-    onClick: () => void;
-}
-
-export default function FloatingMaloo(props: FloatingMalooProps) {
-    const { visible, onClick } = props;
-
-    if (!visible) {
+    if (!isMobile) {
         return null;
     }
 
-    return <MalooVideo onClick={onClick} autoPlay muted loop src={MALOO_PEEKING_WEBM_URL} />;
+    return <video className={classes.maloo} autoPlay muted loop src={MALOO_PEEKING_WEBM_URL} />;
 }

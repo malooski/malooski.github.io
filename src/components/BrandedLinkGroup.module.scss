@@ -1,0 +1,24 @@
+@use '../style/utility.scss' as *;
+
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+}
+
+.children {
+    display: grid;
+
+    gap: 0.5em;
+
+    grid-template-columns: 1fr 1fr;
+
+    @include smartphone {
+        grid-template-columns: 1fr;
+    }
+}
+
+.header {
+
+    border-bottom: solid 1px white;
+}

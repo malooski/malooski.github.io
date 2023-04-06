@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import styled from "styled-components";
-import Link from "../components/Link";
 
 interface CreditEntry {
     workName: string;
@@ -114,7 +113,7 @@ const CreditsHeader = styled.div`
     font-size: 1.2em;
 `;
 
-export default function AboutPage() {
+export function Component() {
     return (
         <Fragment>
             <h3>Credits</h3>
@@ -125,7 +124,7 @@ export default function AboutPage() {
                     <>
                         <div>
                             {credit.workUrl ? (
-                                <Link href={credit.workUrl}>{credit.workName}</Link>
+                                <a href={credit.workUrl}>{credit.workName}</a>
                             ) : (
                                 <span>{credit.workName}</span>
                             )}
@@ -133,7 +132,7 @@ export default function AboutPage() {
 
                         <div>
                             {credit.authorUrl ? (
-                                <Link href={credit.authorUrl}>{credit.authorName}</Link>
+                                <a href={credit.authorUrl}>{credit.authorName}</a>
                             ) : (
                                 <span>{credit.authorName}</span>
                             )}

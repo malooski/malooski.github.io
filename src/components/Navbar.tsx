@@ -45,8 +45,8 @@ export function Navbar() {
     return (
         <NavDiv>
             <CustomLink to="/">Home</CustomLink>
+            <CustomLink to="/artwork">Art Gallery</CustomLink>
             <CustomLink to="/about">About</CustomLink>
-            <CustomLink to="/artwork">Artwork</CustomLink>
             <MyLink target="_blank" rel="norefferer" href={REFERENCE_URL}>
                 Reference
             </MyLink>
