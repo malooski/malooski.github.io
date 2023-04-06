@@ -22,7 +22,7 @@ import vrchatLogo from "./../assets/brand logos/vrchat logo.png";
 export function Component() {
     return (
         <div className={classes.root}>
-            <span>A collection of Malooski commissions and fanarts.</span>
+            <span>Hot Alien Hackers in YOUR area!</span>
             <div className={classes.linkGroups}>
                 <BrandedLinkGroup name="🔴 Streaming">
                     <BrandedLink
