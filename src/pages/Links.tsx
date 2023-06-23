@@ -16,6 +16,7 @@ import tiktokLogo from "./../assets/brand logos/tiktok logo.png";
 import tumblrLogo from "./../assets/brand logos/tumblr logo.png";
 import twitchLogo from "./../assets/brand logos/twitch logo.png";
 import twitterLogo from "./../assets/brand logos/twitter logo.png";
+import bskyLogo from "./../assets/brand logos/bluesky logo.png";
 import vrchatLogo from "./../assets/brand logos/vrchat logo.png";
 import youtubeLogo from "./../assets/brand logos/youtube logo.png";
 
@@ -23,7 +24,7 @@ export function Component() {
     return (
         <div className={classes.root}>
             <div className={classes.linkGroups}>
-                <BrandedLinkGroup name="🔴 Streaming">
+                {/* <BrandedLinkGroup name="🔴 Streaming">
                     <BrandedLink
                         bgColor="#6441a5"
                         color="#fff"
@@ -37,25 +38,34 @@ export function Component() {
                         color="#fff"
                         href="https://sched.maloo.ski"
                     />
-                </BrandedLinkGroup>
+                </BrandedLinkGroup> */}
 
                 <BrandedLinkGroup name="🐦 Micro-Blogs">
+                    <BrandedLink
+                        name="Bluesky"
+                        bgColor="#06152a"
+                        color="#fff"
+                        href="https://bsky.app/profile/maloo.ski"
+                        img={bskyLogo}
+                        handle="@maloo.ski"
+                        new
+                    />
                     <BrandedLink
                         name="Twitter"
                         bgColor="#1da1f2"
                         color="#fff"
                         href="https://twitter.com/malooski_vt"
                         img={twitterLogo}
-                        handle="malooski_vt"
+                        handle="@malooski_vt"
                     />
-                    <BrandedLink
+                    {/* <BrandedLink
                         name="Twitter 🔞"
                         bgColor="#1da1f2"
                         color="#fff"
                         href="https://twitter.com/malewdski"
                         img={twitterLogo}
                         handle="malewdski"
-                    />
+                    /> */}
 
                     <BrandedLink
                         name="Mastodon"
@@ -106,6 +116,7 @@ export function Component() {
                         img={cohostLogo}
                         href="http://cohost.org/@malooski"
                         handle="malooski"
+                        new
                     />
 
                     <BrandedLink
@@ -127,22 +138,22 @@ export function Component() {
                         href="https://ko-fi.com/malooski"
                         handle="malooski"
                     />
-                    <BrandedLink
+                    {/* <BrandedLink
                         name="StreamElements Tips"
                         bgColor="#1c233d"
                         color="white"
                         img={streamelementsLogo}
                         href="https://streamelements.com/malooski/tip"
-                    />
+                    /> */}
 
-                    <BrandedLink
+                    {/* <BrandedLink
                         name="Throne"
                         bgColor="#e4e1f9"
                         color="black"
                         img={throneLogo}
                         href="https://thrn.co/u/malooski"
                         handle="malooski"
-                    />
+                    /> */}
                 </BrandedLinkGroup>
 
                 <BrandedLinkGroup name="🕹 Gaming">
@@ -151,8 +162,8 @@ export function Component() {
                         bgColor="#36393f"
                         color="white"
                         img={discordLogo}
-                        handle="malooski#0001"
-                        copyText="malooski#0001"
+                        handle="malooski"
+                        copyText="malooski"
                     />
                     <BrandedLink
                         name="Discord Server"

@@ -21,27 +21,25 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.10.0",
-        "styled-components": "^5.3.9",
         "typescript": "^5.0.3",
         "uuid": "^9.0.0"
     },
     "scripts": {
-        "dev": "parcel",
+        "dev": "parcel -p 8000",
         "build": "parcel build",
         "build-prod": "parcel build --public-url https://maloo.ski",
         "serve": "http-server dist -p 1234"
     },
     "browserslist": "> 0.5%, last 2 versions, not dead",
     "devDependencies": {
-        "@parcel/packager-raw-url": "2.8.3",
-        "@parcel/transformer-sass": "2.8.3",
-        "@parcel/transformer-webmanifest": "2.8.3",
+        "@parcel/packager-raw-url": "^2.9.2",
+        "@parcel/transformer-sass": "^2.9.2",
+        "@parcel/transformer-webmanifest": "^2.9.2",
         "@types/lodash": "^4.14.192",
         "@types/node": "^18.15.11",
         "@types/react": "^18.0.32",
         "@types/react-dom": "^18.0.11",
         "@types/react-router-dom": "^5.3.3",
-        "@types/styled-components": "^5.1.26",
         "@types/uuid": "^9.0.1",
         "browserslist": "^4.21.5",
         "http-server": "^14.1.1",
@@ -50,7 +48,6 @@
         "process": "^0.11.10"
     },
     "volta": {
-        "node": "18.12.1",
-        "yarn": "3.3.0"
+        "node": "18.12.1"
     }
 }

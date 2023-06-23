@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
-import styled from "styled-components";
-import { THEME } from "../constants";
 import { cssUrlify } from "../util/css";
+
+import classes from "./BrandedLink.module.scss";
 
 export interface BrandedLinkProps {
     img?: string;
@@ -13,52 +13,13 @@ export interface BrandedLinkProps {
     handle?: string;
 
     copyText?: string;
+
+    new?: boolean;
 }
 
-const BrandedLinkAnchor = styled.a<{ color: string; bgColor: string }>`
-    color: ${p => p.color};
-    background-color: ${p => p.bgColor};
-    background-size: 100% 100%;
-
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-
-    :hover {
-        box-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
-    }
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2em;
-`;
-
-const MyImg = styled.img`
-    height: 1.2em;
-    padding: 0;
-`;
-
-const CenterDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-
-    align-items: center;
-
-    gap: 0.5em;
-`;
-
-const NameSpan = styled.div`
-    font-weight: bold;
-`;
-
-const HandleSpan = styled.span`
-    font-family: ${THEME.fonts.monospace};
-    font-size: 0.8em;
-`;
+function NewBadge() {
+    return <span className={classes.newBadge}>New!</span>;
+}
 
 export default function BrandedLink(props: BrandedLinkProps): JSX.Element {
     const { name, handle, color = "white", href, img, bgColor, bgImg } = props;
@@ -78,11 +39,12 @@ export default function BrandedLink(props: BrandedLinkProps): JSX.Element {
     const isCopyOnly = props.copyText != null && href == null;
 
     return (
-        <BrandedLinkAnchor
-            color={color}
+        <a
+            className={classes.root}
             href={isCopyOnly ? "#" : href}
-            bgColor={bgColor}
             style={{
+                color: color,
+                backgroundColor: bgColor,
                 backgroundImage: cssUrlify(bgImg),
             }}
             target={isCopyOnly ? undefined : "_blank"}
@@ -90,13 +52,14 @@ export default function BrandedLink(props: BrandedLinkProps): JSX.Element {
             onClick={onClickCopy}
             title={isCopyOnly ? "Click to copy!" : undefined}
         >
-            <CenterDiv>
-                {img && <MyImg src={img} />}
-                <NameSpan>{name}</NameSpan>
-            </CenterDiv>
-            <CenterDiv>
-                <HandleSpan>{wasCopied ? "Copied!" : handle}</HandleSpan>
-            </CenterDiv>
-        </BrandedLinkAnchor>
+            {props.new && <NewBadge />}
+            <div className={classes.centerDiv}>
+                {img && <img className={classes.myImg} src={img} />}
+                <div className={classes.name}>{name}</div>
+            </div>
+            <div className={classes.centerDiv}>
+                <span className={classes.handle}>{wasCopied ? "Copied!" : handle}</span>
+            </div>
+        </a>
     );
 }

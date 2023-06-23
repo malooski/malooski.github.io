@@ -1,5 +1,6 @@
+import classes from "./About.module.scss";
+
 import { Fragment } from "react";
-import styled from "styled-components";
 
 interface CreditEntry {
     workName: string;
@@ -67,59 +68,13 @@ const CREDITS: CreditEntry[] = [
     },
 ];
 
-const CREDITS_RADIUS = "1em";
-const CreditsTable = styled.div`
-    display: grid;
-
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    border-radius: ${CREDITS_RADIUS};
-
-    grid-template-columns: auto auto;
-
-    // all cihldren
-    & > div {
-        padding: 1em 1em;
-
-        &:first-child {
-            border-top-left-radius: ${CREDITS_RADIUS};
-        }
-        &:nth-child(2) {
-            border-top-right-radius: ${CREDITS_RADIUS};
-        }
-
-        &:last-child {
-            border-bottom-right-radius: ${CREDITS_RADIUS};
-        }
-        &:nth-last-child(2) {
-            border-bottom-left-radius: ${CREDITS_RADIUS};
-        }
-
-        &:nth-child(2n + 1) {
-        }
-
-        &:nth-child(4n + 1),
-        &:nth-child(4n + 2) {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        &:nth-child(4n + 3),
-        &:nth-child(4n) {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-    }
-`;
-
-const CreditsHeader = styled.div`
-    font-weight: bold;
-    font-size: 1.2em;
-`;
-
 export function Component() {
     return (
         <Fragment>
             <h3>Credits</h3>
-            <CreditsTable>
-                <CreditsHeader>Work</CreditsHeader>
-                <CreditsHeader>Author</CreditsHeader>
+            <div className={classes.creditsTable}>
+                <div className={classes.creditsHeader}>Work</div>
+                <div className={classes.creditsHeader}>Author</div>
                 {CREDITS.map(credit => (
                     <>
                         <div>
@@ -139,7 +94,7 @@ export function Component() {
                         </div>
                     </>
                 ))}
-            </CreditsTable>
+            </div>
             <h3>Site</h3>
             <p>This site uses a collection of different technologies.</p>
             <ul>
