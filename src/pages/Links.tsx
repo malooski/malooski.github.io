@@ -1,4 +1,4 @@
-import BrandedLink from "../components/BrandedLink";
+import { BrandedLink } from "../components/BrandedLink";
 import BrandedLinkGroup from "../components/BrandedLinkGroup";
 import FloatingMaloo from "../components/FloatingMaloo";
 
@@ -20,10 +20,19 @@ import bskyLogo from "./../assets/brand logos/bluesky logo.png";
 import vrchatLogo from "./../assets/brand logos/vrchat logo.png";
 import youtubeLogo from "./../assets/brand logos/youtube logo.png";
 
+import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
+
 export function Component() {
     return (
         <div className={classes.root}>
-            <div className={classes.linkGroups}>
+            <motion.div
+                layout
+                transition={{
+                    duration: 10,
+                    staggerChildren: 10,
+                }}
+                className={classes.linkGroups}
+            >
                 {/* <BrandedLinkGroup name="🔴 Streaming">
                     <BrandedLink
                         bgColor="#6441a5"
@@ -91,20 +100,16 @@ export function Component() {
                         color="white"
                         img={youtubeLogo}
                         href="https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg"
-                    />
-                    <BrandedLink
-                        name="Highlights"
-                        bgColor="#ff0000"
-                        color="white"
-                        img={youtubeLogo}
-                        href="https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ"
-                    />
-                    <BrandedLink
-                        name="Archive"
-                        bgColor="#ff0000"
-                        color="white"
-                        img={youtubeLogo}
-                        href="https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA"
+                        subitems={[
+                            {
+                                name: "Highlights",
+                                href: "https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ",
+                            },
+                            {
+                                name: "Archive",
+                                href: "https://www.youtube.com/channel/UCgz3FZft2qFflMrItqf3_yA",
+                            },
+                        ]}
                     />
                 </BrandedLinkGroup>
 
@@ -114,7 +119,7 @@ export function Component() {
                         bgColor="#83254f"
                         color="white"
                         img={cohostLogo}
-                        href="http://cohost.org/@malooski"
+                        href="http://cohost.org/malooski"
                         handle="malooski"
                         new
                     />
@@ -162,15 +167,14 @@ export function Component() {
                         bgColor="#36393f"
                         color="white"
                         img={discordLogo}
-                        handle="malooski"
-                        copyText="malooski"
-                    />
-                    <BrandedLink
-                        name="Discord Server"
-                        bgColor="#36393f"
-                        color="white"
-                        img={discordLogo}
                         href="https://discord.com/invite/ahmyDJ5Pfr"
+                        subitems={[
+                            {
+                                name: "Me",
+                                handle: "malooski",
+                                copyText: "malooski",
+                            },
+                        ]}
                     />
 
                     <BrandedLink
@@ -202,7 +206,7 @@ export function Component() {
                         handle="malooski_vt"
                     />
                 </BrandedLinkGroup>
-            </div>
+            </motion.div>
             <FloatingMaloo />
         </div>
     );

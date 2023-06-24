@@ -1,8 +1,7 @@
-
 @use "variables.scss" as *;
 
 @mixin smartphone {
-  @media (max-width: $smartphone-width) {
-    @content;
-  }
+    @media (max-width: $smartphone-width) {
+        @content;
+    }
 }

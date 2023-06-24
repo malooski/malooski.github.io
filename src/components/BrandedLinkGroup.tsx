@@ -1,18 +1,28 @@
 import * as classes from "./BrandedLinkGroup.module.scss";
 
+import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
+
 interface BrandedLinkGroupProps {
     name: string;
 
     children?: React.ReactNode;
 }
 
-export default function BrandedLinkGroup(props: BrandedLinkGroupProps) {
+export default motion(function BrandedLinkGroup(props: BrandedLinkGroupProps) {
     const { name, children } = props;
 
     return (
-        <div className={classes.root}>
+        <motion.div
+            layout
+            initial={{ opacity: 0, height: 0 }}
+            animate={{
+                opacity: 1,
+                height: "auto",
+            }}
+            className={classes.root}
+        >
             <h3 className={classes.header}>{name}</h3>
             <div className={classes.children}>{children}</div>
-        </div>
+        </motion.div>
     );
-}
+});

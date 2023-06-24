@@ -1,65 +1,175 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { cssUrlify } from "../util/css";
+import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
+import { observer } from "mobx-react";
 
 import classes from "./BrandedLink.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
+import { useDebounce } from "../lib/react";
 
-export interface BrandedLinkProps {
-    img?: string;
-    href?: string;
-    bgColor: string;
-    bgImg?: string;
-    color?: string;
+interface BaseBrandedLinkInfo {
     name?: string;
     handle?: string;
+    href?: string;
+
+    color?: string;
+    bgColor?: string;
+
+    img?: string;
 
     copyText?: string;
-
     new?: boolean;
 }
 
-function NewBadge() {
-    return <span className={classes.newBadge}>New!</span>;
+export interface BrandedLinkInfo extends BaseBrandedLinkInfo {
+    subitems?: Array<BaseBrandedLinkInfo>;
 }
 
-export default function BrandedLink(props: BrandedLinkProps): JSX.Element {
-    const { name, handle, color = "white", href, img, bgColor, bgImg } = props;
+export interface BrandedLinkProps extends BrandedLinkInfo {}
+
+function NewBadge() {
+    return (
+        <motion.span
+            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, rotate: 360 * 5 }}
+            animate={{
+                opacity: 1,
+                rotate: -15,
+            }}
+            exit={{ opacity: 0 }}
+            className={classes.newBadge}
+        >
+            New!
+        </motion.span>
+    );
+}
+
+export const BrandedLink = observer((props: BrandedLinkProps): JSX.Element => {
+    const { subitems } = props;
+
+    const [isExpanded, setExpanded] = useState(false);
+
+    const isExpandable = subitems != null && subitems.length > 0;
+
+    function onExpandSubItems(e: React.SyntheticEvent<any, any>) {
+        e.preventDefault();
+
+        if (!isExpandable) return;
+
+        setExpanded(!isExpanded);
+    }
+
+    return (
+        <motion.div
+            layout
+            layoutRoot
+            transition={{
+                duration: 0.5,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={classes.container}
+        >
+            <BaseBrandedLink
+                {...props}
+                rightItems={
+                    isExpandable && (
+                        <ExpandButton
+                            color={props.color}
+                            expanded={isExpanded}
+                            onClick={onExpandSubItems}
+                        />
+                    )
+                }
+            />
+
+            <AnimatePresence>
+                {isExpanded &&
+                    (props.subitems ?? []).map((subitem, idx) => (
+                        <BaseBrandedLink {...{ ...props, ...subitem }} />
+                    ))}
+            </AnimatePresence>
+        </motion.div>
+    );
+});
+
+interface BaseBrandedLinkProps extends BaseBrandedLinkInfo {
+    rightItems?: React.ReactNode;
+}
+
+function BaseBrandedLink(props: BaseBrandedLinkProps) {
+    const { name, handle, color = "white", href, img, bgColor, copyText, rightItems } = props;
 
     const [wasCopied, setCopied] = useState(false);
     const clearCopyRef = useRef<any>();
 
+    const style = useMemo(
+        () => ({
+            color: color,
+            backgroundColor: bgColor,
+        }),
+        [color, bgColor]
+    );
+
     const onClickCopy = useCallback(() => {
-        if (props.copyText == null) return;
-        navigator.clipboard.writeText(props.copyText);
+        if (copyText == null) return;
+        navigator.clipboard.writeText(copyText);
 
         clearTimeout(clearCopyRef.current);
         setCopied(true);
         clearCopyRef.current = setTimeout(() => setCopied(false), 3 * 1000);
-    }, [props.copyText]);
+    }, [copyText]);
 
-    const isCopyOnly = props.copyText != null && href == null;
+    const showRightItems = rightItems != null;
+    const showHandle = handle != null;
+    const isCopyOnly = href == null && handle != null;
+    const myHref = isCopyOnly ? undefined : href;
 
     return (
-        <a
-            className={classes.root}
-            href={isCopyOnly ? "#" : href}
-            style={{
-                color: color,
-                backgroundColor: bgColor,
-                backgroundImage: cssUrlify(bgImg),
-            }}
+        <motion.a
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+            className={classes.brandedLink}
+            href={myHref}
+            style={style}
             target={isCopyOnly ? undefined : "_blank"}
             rel="noreferrer"
             onClick={onClickCopy}
             title={isCopyOnly ? "Click to copy!" : undefined}
         >
-            {props.new && <NewBadge />}
             <div className={classes.centerDiv}>
                 {img && <img className={classes.myImg} src={img} />}
                 <div className={classes.name}>{name}</div>
             </div>
-            <div className={classes.centerDiv}>
-                <span className={classes.handle}>{wasCopied ? "Copied!" : handle}</span>
-            </div>
-        </a>
+            {props.new && <NewBadge />}
+
+            {showRightItems && <div className={classes.rightItems}>{props.rightItems}</div>}
+            {showHandle && <span className={classes.handle}>{wasCopied ? "Copied!" : handle}</span>}
+        </motion.a>
     );
 }
+
+interface ExpandButtonProps {
+    color?: string;
+    expanded?: boolean;
+    onClick?: (e: React.SyntheticEvent<any, any>) => void;
+}
+
+const ExpandButton = observer((props: ExpandButtonProps) => {
+    const { expanded, color, onClick } = props;
+
+    return (
+        <motion.button
+            onClick={onClick}
+            animate={{ rotate: expanded ? 0 : 90 }}
+            whileHover={{ scale: 1.2 }}
+            className={classes.expandButton}
+        >
+            <FontAwesomeIcon color={color} icon={faAngleDoubleDown} />
+        </motion.button>
+    );
+});
