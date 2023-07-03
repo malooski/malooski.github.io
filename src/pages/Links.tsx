@@ -99,8 +99,11 @@ export function Component() {
                         bgColor="#ff0000"
                         color="white"
                         img={youtubeLogo}
-                        href="https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg"
                         subitems={[
+                            {
+                                name: "Main Channel",
+                                href: "https://www.youtube.com/channel/UCXUF6xQFtLHKEJleSPbiJbg",
+                            },
                             {
                                 name: "Highlights",
                                 href: "https://www.youtube.com/channel/UCHl8_eNCIcvK6dEcP4x1AoQ",
@@ -167,12 +170,16 @@ export function Component() {
                         bgColor="#36393f"
                         color="white"
                         img={discordLogo}
-                        href="https://discord.com/invite/ahmyDJ5Pfr"
                         subitems={[
                             {
-                                name: "Me",
+                                name: "My Server",
+                                href: "https://discord.com/invite/ahmyDJ5Pfr",
+                            },
+                            {
+                                name: "My Profile",
                                 handle: "malooski",
                                 copyText: "malooski",
+                                href: null,
                             },
                         ]}
                     />

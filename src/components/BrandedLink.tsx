@@ -11,14 +11,14 @@ import { useDebounce } from "../lib/react";
 interface BaseBrandedLinkInfo {
     name?: string;
     handle?: string;
-    href?: string;
+    href?: string | undefined | null;
 
     color?: string;
     bgColor?: string;
 
     img?: string;
 
-    copyText?: string;
+    copyText?: string | undefined | null;
     new?: boolean;
 }
 
@@ -48,16 +48,34 @@ function NewBadge() {
 export const BrandedLink = observer((props: BrandedLinkProps): JSX.Element => {
     const { subitems } = props;
 
+    const [isChevronRotated, setChevronRotated] = useState(false);
     const [isExpanded, setExpanded] = useState(false);
 
     const isExpandable = subitems != null && subitems.length > 0;
 
-    function onExpandSubItems(e: React.SyntheticEvent<any, any>) {
-        e.preventDefault();
+    const collapseTimeoutRef = useRef<any>();
 
+    function onExpandSubItems() {
         if (!isExpandable) return;
 
         setExpanded(!isExpanded);
+        setChevronRotated(!isExpanded);
+    }
+
+    function onMouseLeave() {
+        if (!isExpandable) return;
+        collapseTimeoutRef.current = setTimeout(() => setExpanded(false), 2000);
+
+        setChevronRotated(false);
+    }
+
+    function onMouseEnter() {
+        if (!isExpandable) return;
+
+        clearTimeout(collapseTimeoutRef.current);
+        if (!isExpanded) return;
+
+        setChevronRotated(true);
     }
 
     return (
@@ -71,17 +89,14 @@ export const BrandedLink = observer((props: BrandedLinkProps): JSX.Element => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className={classes.container}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
         >
             <BaseBrandedLink
                 {...props}
+                onClick={onExpandSubItems}
                 rightItems={
-                    isExpandable && (
-                        <ExpandButton
-                            color={props.color}
-                            expanded={isExpanded}
-                            onClick={onExpandSubItems}
-                        />
-                    )
+                    isExpandable && <ExpandButton color={props.color} expanded={isChevronRotated} />
                 }
             />
 
@@ -97,10 +112,21 @@ export const BrandedLink = observer((props: BrandedLinkProps): JSX.Element => {
 
 interface BaseBrandedLinkProps extends BaseBrandedLinkInfo {
     rightItems?: React.ReactNode;
+    onClick?: () => void;
 }
 
 function BaseBrandedLink(props: BaseBrandedLinkProps) {
-    const { name, handle, color = "white", href, img, bgColor, copyText, rightItems } = props;
+    const {
+        name,
+        handle,
+        color = "white",
+        href,
+        img,
+        bgColor,
+        copyText,
+        rightItems,
+        onClick,
+    } = props;
 
     const [wasCopied, setCopied] = useState(false);
     const clearCopyRef = useRef<any>();
@@ -134,11 +160,11 @@ function BaseBrandedLink(props: BaseBrandedLinkProps) {
             exit={{ opacity: 0, scale: 0.5 }}
             whileHover={{ scale: 1.05 }}
             className={classes.brandedLink}
-            href={myHref}
+            href={myHref ?? undefined}
             style={style}
             target={isCopyOnly ? undefined : "_blank"}
             rel="noreferrer"
-            onClick={onClickCopy}
+            onClick={onClick ?? onClickCopy}
             title={isCopyOnly ? "Click to copy!" : undefined}
         >
             <div className={classes.centerDiv}>
