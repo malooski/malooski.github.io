@@ -67,6 +67,7 @@ export function Component() {
                         href="https://www.threads.net/@malooski_vt"
                         img={threadsLogo}
                         handle="@malooski_vt"
+                        handleHover="@malooski_vt@threads.net"
                         new
                     />
                     <BrandedLink

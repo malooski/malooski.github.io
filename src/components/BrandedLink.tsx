@@ -11,6 +11,7 @@ import { useDebounce } from "../lib/react";
 interface BaseBrandedLinkInfo {
     name?: string;
     handle?: string;
+    handleHover?: string;
     href?: string | undefined | null;
 
     color?: string;
@@ -119,6 +120,7 @@ function BaseBrandedLink(props: BaseBrandedLinkProps) {
     const {
         name,
         handle,
+        handleHover,
         color = "white",
         href,
         img,
@@ -153,6 +155,8 @@ function BaseBrandedLink(props: BaseBrandedLinkProps) {
     const isCopyOnly = href == null && handle != null;
     const myHref = isCopyOnly ? undefined : href;
 
+    const handleTitle = handleHover ?? handle;
+
     return (
         <motion.a
             initial={{ opacity: 0, scale: 0.5 }}
@@ -174,7 +178,11 @@ function BaseBrandedLink(props: BaseBrandedLinkProps) {
             {props.new && <NewBadge />}
 
             {showRightItems && <div className={classes.rightItems}>{props.rightItems}</div>}
-            {showHandle && <span className={classes.handle}>{wasCopied ? "Copied!" : handle}</span>}
+            {showHandle && (
+                <span title={handleTitle} className={classes.handle}>
+                    {wasCopied ? "Copied!" : handle}
+                </span>
+            )}
         </motion.a>
     );
 }
