@@ -19,6 +19,7 @@ import twitterLogo from "./../assets/brand logos/twitter logo.png";
 import bskyLogo from "./../assets/brand logos/bluesky logo.png";
 import vrchatLogo from "./../assets/brand logos/vrchat logo.png";
 import youtubeLogo from "./../assets/brand logos/youtube logo.png";
+import threadsLogo from "./../assets/brand logos/threads logo.png";
 
 import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
 
@@ -57,6 +58,15 @@ export function Component() {
                         href="https://bsky.app/profile/maloo.ski"
                         img={bskyLogo}
                         handle="@maloo.ski"
+                        new
+                    />
+                    <BrandedLink
+                        name="Threads"
+                        bgColor="#000000"
+                        color="#fff"
+                        href="https://www.threads.net/@malooski_vt"
+                        img={threadsLogo}
+                        handle="@malooski_vt"
                         new
                     />
                     <BrandedLink
