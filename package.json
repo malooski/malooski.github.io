@@ -2,7 +2,7 @@
     "name": "malooski.github.io",
     "version": "0.1.0",
     "private": true,
-    "source": "src/index.html",
+    "source": "./index.html",
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.4.0",
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -10,9 +10,9 @@
         "@fortawesome/free-regular-svg-icons": "^6.4.0",
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
+        "@vitejs/plugin-react": "^4.1.0",
         "axios": "^1.3.4",
         "classnames": "^2.3.2",
-        "cross-env": "^7.0.3",
         "date-fns": "^2.29.3",
         "date-fns-tz": "^2.0.0",
         "framer-motion": "^10.12.17",
@@ -26,27 +26,21 @@
         "uuid": "^9.0.0"
     },
     "scripts": {
-        "dev": "parcel -p 8000",
-        "build": "parcel build",
-        "build-prod": "parcel build --public-url https://maloo.ski",
-        "serve": "http-server dist -p 1234"
+        "dev": "bunx --bun vite",
+        "build": "bunx --bun vite build",
+        "serve": "bunx http-server dist -p 1234"
     },
     "browserslist": "> 0.5%, last 2 versions, not dead",
     "devDependencies": {
-        "@parcel/packager-raw-url": "^2.9.2",
-        "@parcel/transformer-sass": "^2.9.2",
-        "@parcel/transformer-webmanifest": "^2.9.2",
         "@types/lodash": "^4.14.192",
         "@types/node": "^18.15.11",
         "@types/react": "^18.0.32",
         "@types/react-dom": "^18.0.11",
         "@types/react-router-dom": "^5.3.3",
         "@types/uuid": "^9.0.1",
-        "browserslist": "^4.21.5",
         "http-server": "^14.1.1",
-        "parcel": "^2.8.3",
         "prettier": "^2.8.7",
-        "process": "^0.11.10"
+        "vite": "^4.5.0"
     },
     "volta": {
         "node": "18.12.1"

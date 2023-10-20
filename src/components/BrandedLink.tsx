@@ -1,33 +1,16 @@
-import { useCallback, useMemo, useRef, useState } from "react";
-import { cssUrlify } from "../util/css";
-import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { observer } from "mobx-react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
-import classes from "./BrandedLink.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
-import { useDebounce } from "../lib/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LinkModel } from "../models/LinkModel";
+import { SubLinkModel } from "../models/SubLinkModel";
+import classes from "./BrandedLink.module.scss";
 
-interface BaseBrandedLinkInfo {
-    name?: string;
-    handle?: string;
-    handleHover?: string;
-    href?: string | undefined | null;
-
-    color?: string;
-    bgColor?: string;
-
-    img?: string;
-
-    copyText?: string | undefined | null;
-    new?: boolean;
+export interface BrandedLinkProps {
+    link: LinkModel;
 }
-
-export interface BrandedLinkInfo extends BaseBrandedLinkInfo {
-    subitems?: Array<BaseBrandedLinkInfo>;
-}
-
-export interface BrandedLinkProps extends BrandedLinkInfo {}
 
 function NewBadge() {
     return (
@@ -47,12 +30,12 @@ function NewBadge() {
 }
 
 export const BrandedLink = observer((props: BrandedLinkProps): JSX.Element => {
-    const { subitems } = props;
+    const { link } = props;
 
     const [isChevronRotated, setChevronRotated] = useState(false);
     const [isExpanded, setExpanded] = useState(false);
 
-    const isExpandable = subitems != null && subitems.length > 0;
+    const isExpandable = link.subLinks.length > 0;
 
     const collapseTimeoutRef = useRef<any>();
 
@@ -97,65 +80,52 @@ export const BrandedLink = observer((props: BrandedLinkProps): JSX.Element => {
                 {...props}
                 onClick={onExpandSubItems}
                 rightItems={
-                    isExpandable && <ExpandButton color={props.color} expanded={isChevronRotated} />
+                    isExpandable && <ExpandButton color={link.color} expanded={isChevronRotated} />
                 }
             />
 
             <AnimatePresence>
-                {isExpanded &&
-                    (props.subitems ?? []).map((subitem, idx) => (
-                        <BaseBrandedLink {...{ ...props, ...subitem }} />
-                    ))}
+                {isExpanded && link.subLinks.map(subLink => <BaseBrandedLink link={subLink} />)}
             </AnimatePresence>
         </motion.div>
     );
 });
 
-interface BaseBrandedLinkProps extends BaseBrandedLinkInfo {
+interface BaseBrandedLinkProps {
+    link: LinkModel | SubLinkModel;
     rightItems?: React.ReactNode;
     onClick?: () => void;
 }
 
-function BaseBrandedLink(props: BaseBrandedLinkProps) {
-    const {
-        name,
-        handle,
-        handleHover,
-        color = "white",
-        href,
-        img,
-        bgColor,
-        copyText,
-        rightItems,
-        onClick,
-    } = props;
+const BaseBrandedLink = observer((props: BaseBrandedLinkProps) => {
+    const { link } = props;
 
     const [wasCopied, setCopied] = useState(false);
     const clearCopyRef = useRef<any>();
 
     const style = useMemo(
         () => ({
-            color: color,
-            backgroundColor: bgColor,
+            color: link.color,
+            backgroundColor: link.bgColor,
         }),
-        [color, bgColor]
+        [link.color, link.bgColor]
     );
 
     const onClickCopy = useCallback(() => {
-        if (copyText == null) return;
-        navigator.clipboard.writeText(copyText);
+        if (link.copyText == null) return;
+        navigator.clipboard.writeText(link.copyText);
 
         clearTimeout(clearCopyRef.current);
         setCopied(true);
         clearCopyRef.current = setTimeout(() => setCopied(false), 3 * 1000);
-    }, [copyText]);
+    }, [link.copyText]);
 
-    const showRightItems = rightItems != null;
-    const showHandle = handle != null;
-    const isCopyOnly = href == null && handle != null;
-    const myHref = isCopyOnly ? undefined : href;
+    const showRightItems = props.rightItems != null;
+    const showHandle = link.handle != null;
+    const isCopyOnly = link.href == null && link.handle != null;
+    const myHref = isCopyOnly ? undefined : link.href;
 
-    const handleTitle = handleHover ?? handle;
+    const handleTitle = link.handleHover ?? link.handle;
 
     return (
         <motion.a
@@ -168,24 +138,24 @@ function BaseBrandedLink(props: BaseBrandedLinkProps) {
             style={style}
             target={isCopyOnly ? undefined : "_blank"}
             rel="noreferrer"
-            onClick={onClick ?? onClickCopy}
+            onClick={props.onClick ?? onClickCopy}
             title={isCopyOnly ? "Click to copy!" : undefined}
         >
             <div className={classes.centerDiv}>
-                {img && <img className={classes.myImg} src={img} />}
-                <div className={classes.name}>{name}</div>
+                {link.img && <img className={classes.myImg} src={link.img} />}
+                <div className={classes.name}>{link.name}</div>
             </div>
-            {props.new && <NewBadge />}
+            {link.new && <NewBadge />}
 
             {showRightItems && <div className={classes.rightItems}>{props.rightItems}</div>}
             {showHandle && (
                 <span title={handleTitle} className={classes.handle}>
-                    {wasCopied ? "Copied!" : handle}
+                    {wasCopied ? "Copied!" : link.handle}
                 </span>
             )}
         </motion.a>
     );
-}
+});
 
 interface ExpandButtonProps {
     color?: string;
