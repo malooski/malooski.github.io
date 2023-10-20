@@ -1,8 +1,5 @@
-import { Link, LinkProps, useMatch, useResolvedPath } from "react-router-dom";
-import { THEME } from "../constants";
-
-import classes from "./Navbar.module.scss";
 import { NavLink } from "react-router-dom";
+import classes from "./Navbar.module.scss";
 
 const REFERENCE_URL = "https://malooski.notion.site/Reference-06d67a7b38df4a4a9bd3787410ad97b0";
 

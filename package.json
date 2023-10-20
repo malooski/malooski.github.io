@@ -28,7 +28,8 @@
     "scripts": {
         "dev": "bunx --bun vite",
         "build": "bunx --bun vite build",
-        "serve": "bunx http-server dist -p 1234"
+        "serve": "bunx http-server dist -p 1234",
+        "check": "bunx --bun tsc --noEmit --watch"
     },
     "browserslist": "> 0.5%, last 2 versions, not dead",
     "devDependencies": {
