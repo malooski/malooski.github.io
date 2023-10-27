@@ -26,7 +26,7 @@
         "uuid": "^9.0.0"
     },
     "scripts": {
-        "dev": "bunx --bun vite",
+        "start": "bunx --bun vite",
         "build": "bunx --bun vite build",
         "serve": "bunx http-server dist -p 1234",
         "check": "bunx --bun tsc --noEmit --watch"

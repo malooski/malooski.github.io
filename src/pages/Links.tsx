@@ -218,6 +218,7 @@ const GROUPS: GroupLinkModel[] = [
                 color: "white",
                 img: vrchatLogo,
                 handle: "malooski",
+                href: "https://vrchat.com/home/user/usr_49c81fd0-97ed-4865-a498-8be4c0b74f9f",
             }),
         ],
     }),

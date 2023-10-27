@@ -58,6 +58,19 @@
     font-weight: bold;
 }
 
+.handleDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 0.5em;
+}
+
+.copyIcon {
+    opacity: 0.5;
+}
+
 .handle {
     font-size: 0.8em;
 }
@@ -112,13 +125,4 @@
     text-transform: uppercase;
 
     z-index: 100;
-}
-
-@keyframes fromTop {
-    from {
-        transform: translateY(-1em);
-    }
-    to {
-        transform: translateY(0);
-    }
 }

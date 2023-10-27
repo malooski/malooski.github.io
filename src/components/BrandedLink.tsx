@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { observer } from "mobx-react";
 import { useCallback, useMemo, useRef, useState } from "react";
 
-import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleDown, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LinkModel } from "../models/LinkModel";
 import { SubLinkModel } from "../models/SubLinkModel";
@@ -85,7 +85,10 @@ export const BrandedLink = observer((props: BrandedLinkProps): JSX.Element => {
             />
 
             <AnimatePresence>
-                {isExpanded && link.subLinks.map(subLink => <BaseBrandedLink link={subLink} />)}
+                {isExpanded &&
+                    link.subLinks.map(subLink => (
+                        <BaseBrandedLink link={subLink} parentLink={link} />
+                    ))}
             </AnimatePresence>
         </motion.div>
     );
@@ -93,23 +96,21 @@ export const BrandedLink = observer((props: BrandedLinkProps): JSX.Element => {
 
 interface BaseBrandedLinkProps {
     link: LinkModel | SubLinkModel;
+    parentLink?: LinkModel;
     rightItems?: React.ReactNode;
     onClick?: () => void;
 }
 
 const BaseBrandedLink = observer((props: BaseBrandedLinkProps) => {
-    const { link } = props;
+    const { link, parentLink } = props;
 
     const [wasCopied, setCopied] = useState(false);
     const clearCopyRef = useRef<any>();
 
-    const style = useMemo(
-        () => ({
-            color: link.color,
-            backgroundColor: link.bgColor,
-        }),
-        [link.color, link.bgColor]
-    );
+    const style = {
+        color: link.color ?? parentLink?.color,
+        backgroundColor: link.bgColor ?? parentLink?.bgColor,
+    };
 
     const onClickCopy = useCallback(() => {
         if (link.copyText == null) return;
@@ -122,10 +123,12 @@ const BaseBrandedLink = observer((props: BaseBrandedLinkProps) => {
 
     const showRightItems = props.rightItems != null;
     const showHandle = link.handle != null;
-    const isCopyOnly = link.href == null && link.handle != null;
+    const isCopyOnly = !link.href && link.handle != null;
     const myHref = isCopyOnly ? undefined : link.href;
 
     const handleTitle = link.handleHover ?? link.handle;
+
+    const img = link.img ?? parentLink?.img;
 
     return (
         <motion.a
@@ -142,15 +145,16 @@ const BaseBrandedLink = observer((props: BaseBrandedLinkProps) => {
             title={isCopyOnly ? "Click to copy!" : undefined}
         >
             <div className={classes.centerDiv}>
-                {link.img && <img className={classes.myImg} src={link.img} />}
+                {img && <img className={classes.myImg} src={img} />}
                 <div className={classes.name}>{link.name}</div>
             </div>
             {link.new && <NewBadge />}
 
             {showRightItems && <div className={classes.rightItems}>{props.rightItems}</div>}
             {showHandle && (
-                <span title={handleTitle} className={classes.handle}>
-                    {wasCopied ? "Copied!" : link.handle}
+                <span title={handleTitle} className={classes.handleDiv}>
+                    <span className={classes.handle}>{wasCopied ? "Copied!" : link.handle}</span>
+                    {isCopyOnly && <FontAwesomeIcon className={classes.copyIcon} icon={faCopy} />}
                 </span>
             )}
         </motion.a>
