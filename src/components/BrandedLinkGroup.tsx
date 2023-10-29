@@ -43,7 +43,7 @@ export default motion(
                 </h3>
                 <div className={classes.children}>
                     {shownLinks.map(link => (
-                        <BrandedLink link={link} />
+                        <BrandedLink key={link.name} link={link} />
                     ))}
                 </div>
             </motion.div>

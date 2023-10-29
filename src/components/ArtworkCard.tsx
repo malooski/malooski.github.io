@@ -14,6 +14,8 @@ export default function ArtworkCard(props: ArtworkCardProps) {
 
     const typeText = artwork.type === ArtworkType.COMMISSION ? "Commission" : "Fanart";
 
+    const alt = `${artwork.title} by ${artwork.author.name}`;
+
     return (
         <Link to={`/artwork/${artwork.id}`}>
             <div className={classes.root}>
@@ -36,7 +38,7 @@ export default function ArtworkCard(props: ArtworkCardProps) {
                         </a>
                     </div>
                 </div>
-                <img className={classes.thumbnail} src={artwork.thumbnails[0].url} />
+                <img className={classes.thumbnail} src={artwork.thumbnails[0].url} alt={alt} />
             </div>
         </Link>
     );

@@ -10,6 +10,7 @@ export interface IBaseLinkModelArgs {
     bgColor?: string;
 
     img?: string;
+    imgOnly?: boolean;
 
     copyText?: string | undefined | null;
 
@@ -27,6 +28,7 @@ export interface IBaseLinkModel {
     bgColor?: string;
 
     img?: string;
+    imgOnly: boolean;
 
     copyText?: string | undefined | null;
 
@@ -37,20 +39,21 @@ export interface IBaseLinkModel {
 export interface ISubLinkModelArgs extends IBaseLinkModelArgs {}
 
 export class SubLinkModel implements IBaseLinkModel {
-    name: string;
-    handle?: string;
-    handleHover?: string;
-    href?: string | undefined | null;
+    readonly name: string;
+    readonly handle?: string;
+    readonly handleHover?: string;
+    readonly href?: string | undefined | null;
 
-    color?: string;
-    bgColor?: string;
+    readonly color?: string;
+    readonly bgColor?: string;
 
-    img?: string;
+    readonly img?: string;
+    readonly imgOnly: boolean;
 
-    copyText?: string | undefined | null;
+    readonly copyText?: string | undefined | null;
 
-    new: boolean;
-    hidden: boolean;
+    readonly new: boolean;
+    readonly hidden: boolean;
 
     constructor(args: ISubLinkModelArgs) {
         this.name = args.name;
@@ -63,6 +66,7 @@ export class SubLinkModel implements IBaseLinkModel {
         this.copyText = args.copyText;
         this.new = args.new ?? false;
         this.hidden = args.hidden ?? false;
+        this.imgOnly = args.imgOnly ?? false;
 
         makeAutoObservable(this);
     }

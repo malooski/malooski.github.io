@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { observer } from "mobx-react";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { faAngleDoubleDown, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -130,6 +130,8 @@ const BaseBrandedLink = observer((props: BaseBrandedLinkProps) => {
 
     const img = link.img ?? parentLink?.img;
 
+    const alt = `${link.name}'s logo`;
+
     return (
         <motion.a
             initial={{ opacity: 0, scale: 0.5 }}
@@ -145,8 +147,8 @@ const BaseBrandedLink = observer((props: BaseBrandedLinkProps) => {
             title={isCopyOnly ? "Click to copy!" : undefined}
         >
             <div className={classes.centerDiv}>
-                {img && <img className={classes.myImg} src={img} />}
-                <div className={classes.name}>{link.name}</div>
+                {img && <img className={classes.myImg} src={img} alt={alt} />}
+                {!link.imgOnly && <div className={classes.name}>{link.name}</div>}
             </div>
             {link.new && <NewBadge />}
 

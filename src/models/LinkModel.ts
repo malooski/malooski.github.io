@@ -15,6 +15,7 @@ export class LinkModel implements IBaseLinkModel {
     readonly bgColor?: string;
 
     readonly img?: string;
+    readonly imgOnly: boolean;
 
     readonly copyText?: string | undefined | null;
     readonly new: boolean;
@@ -34,6 +35,7 @@ export class LinkModel implements IBaseLinkModel {
         this.new = args.new ?? false;
         this.hidden = args.hidden ?? false;
         this.subLinks = args.subLinks ?? [];
+        this.imgOnly = args.imgOnly ?? false;
 
         makeAutoObservable(this);
     }
