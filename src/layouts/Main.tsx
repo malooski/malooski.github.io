@@ -44,7 +44,7 @@ export default function MainLayout() {
         <div className={classes.background}>
             <div className={classes.root}>
                 <div className={classes.container}>
-                    <img className={classes.logoImage} src={malooskiLogo} />
+                    <img alt="Malooski Logo" className={classes.logoImage} src={malooskiLogo} />
                     <span className={classes.randMessage}>{randMessage}</span>
                     <Navbar />
 
