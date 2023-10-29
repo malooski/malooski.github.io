@@ -132,6 +132,12 @@ const BaseBrandedLink = observer((props: BaseBrandedLinkProps) => {
 
     const alt = `${link.name}'s logo`;
 
+    let ariaLabel = `Open ${link.name} link.`;
+
+    if (isCopyOnly) {
+        ariaLabel = `Copy ${link.copyText} to clipboard.`;
+    }
+
     return (
         <motion.a
             initial={{ opacity: 0, scale: 0.5 }}
@@ -143,6 +149,8 @@ const BaseBrandedLink = observer((props: BaseBrandedLinkProps) => {
             style={style}
             target={isCopyOnly ? undefined : "_blank"}
             rel="noreferrer"
+            aria-label={ariaLabel}
+            role="button"
             onClick={props.onClick ?? onClickCopy}
             title={isCopyOnly ? "Click to copy!" : undefined}
         >

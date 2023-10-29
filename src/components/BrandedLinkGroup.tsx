@@ -59,6 +59,7 @@ function ToggleHiddenButton(props: {
     const { onClick, isShowingHidden, count } = props;
     return (
         <motion.button
+            aria-label="Toggle hidden links"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 0.33, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
