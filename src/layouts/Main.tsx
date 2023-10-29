@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 
-import malooskiLogo from "../assets/Logo.png";
+import malooskiLogo from "../assets/Logo.webp";
 
 import * as classes from "./Main.module.scss";
 import { useMemo } from "react";
