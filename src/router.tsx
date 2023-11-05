@@ -19,6 +19,10 @@ export const router = createHashRouter([
                 path: "/about",
                 lazy: () => import("./pages/About.tsx"),
             },
+            {
+                path: "/projects",
+                lazy: () => import("./pages/Projects.tsx"),
+            },
         ],
     },
     {
