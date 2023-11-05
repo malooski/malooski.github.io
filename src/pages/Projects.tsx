@@ -10,8 +10,6 @@ const MY_BSKY_CIRCLE_REPO = "https://github.com/malooski/my-bsky-circle";
 export function Component() {
     return (
         <Fragment>
-            <h3>Projects</h3>
-
             <table className={classes.projectsTable}>
                 <thead>
                     <tr>
