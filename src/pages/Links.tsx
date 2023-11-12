@@ -204,7 +204,7 @@ const GROUPS: GroupLinkModel[] = [
                 subLinks: [
                     new LinkModel({
                         name: "My Server",
-                        href: "https://discord.com/invite/ahmyDJ5Pfr",
+                        href: "https://discord.com/invite/mVwu7fvVqs",
                     }),
                     new LinkModel({
                         name: "My Profile",
