@@ -229,6 +229,12 @@ const GROUPS: GroupLinkModel[] = [
         name: "❓ Misc",
         links: [
             new LinkModel({
+                name: "GitHub",
+                bgColor: "#24292e",
+                color: "white",
+                href: "https://github.com/malooski",
+            }),
+            new LinkModel({
                 name: "Gumroad",
                 bgColor: "#f4f4f0",
                 color: "black",
