@@ -68,7 +68,7 @@ function ProjectRow(props: ProjectRowProps) {
                 {githubLink && (
                     <a
                         className={classes.ghLink}
-                        href={MY_BSKY_CIRCLE_REPO}
+                        href={link ?? "#"}
                         target="_blank"
                         rel="noreferrer"
                     >
