@@ -68,7 +68,7 @@ function ProjectRow(props: ProjectRowProps) {
                 {githubLink && (
                     <a
                         className={classes.ghLink}
-                        href={link ?? "#"}
+                        href={githubLink ?? "#"}
                         target="_blank"
                         rel="noreferrer"
                     >
